@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Moon Company – Relatórios Logísticos</title>
+
+<style>
+
+body{
+background:#000;
+color:#ddd;
+font-family:'Courier New', monospace;
+margin:0;
+}
+
+header{
+background:#3a018b;
+padding:20px;
+text-align:center;
+border-bottom:1px solid #444;
+font-family: Arial, Helvetica, sans-serif;
+
+}
+
+nav{
+background:#1a1a1a;
+padding:10px;
+text-align:center;
+font-family:Arial, Helvetica, sans-serif ;
+}
+
+nav a{
+color:white;
+margin:25px;
+text-decoration:none;
+}
+main{
+max-width:900px;
+margin:auto;
+padding:30px;
+}
+
+.campo{
+    width: 100%;
+    outline: none;
+    background: #222;
+    font-family: 'Courier New';
+    padding:10px;
+    margin-bottom: 15px;
+    color: aliceblue;
+}
+.campo:focus{
+    border-color:#3a018b
+}
+
+.img{
+position:absolute;
+top:25px;
+left:660px;
+}
+
+.relatorio{
+border:1px solid black;
+padding:20px;
+margin-top: 0px;
+margin-bottom:30px;
+background:rgb(0, 0, 0);
+}
+</style>
+</head>
+<body>
+<header>
+    <img src="Imgs/4.png" width="100"; class="img">
+    <h1>Moon Company</h1>
+    <p>Área de Login</p>
+</header>
+<nav>
+<a href="index.html">Relatórios Públicos</a>
+<a href="Relatórios.html">Relatórios Adicionais</a>
+<a href="#">Contato [Inacessível]</a>
+<a href="#">Login</a>
+</nav>
+<main>
+<div class="relatorio">
+<h3>ACESSO RESTRITO</h3>
+<input type="text" class ="campo" id="usuario" placeholder="Usuário"><br><br><br>
+<input type="text" class ="campo" id ="senha" placeholder="Senha">
+<br><br>
+<button onclick="fazerlogin()" style="cursor:pointer; background:#3a018b; color:white; border:none; padding:10px 20px;">ENTRAR</button>
+<p id="mensagem-erro" style="color: yellow; font-size: 12px; margin-top: 10px;"></p>
+</div>
+</main>
+<script>
+    function fazerlogin(){
+    var user =document.getElementById('usuario').value;
+    var sen =document.getElementById('senha').value;
+    var erro =document.getElementById('mensagem-erro');
+    
+    var usuárioB="Ansiedade"
+    var senB="030"
+    var usuárioC="Floren"
+    var senC="27839"
+
+    if (user==usuárioC && sen==senC){
+        alert("Acesso concedido, seja bem vindo! [Nível-2]");
+        window.location.href="Catálogo.html"
+    }
+    if (user==usuárioB && sen==senB){
+        alert("Bem vindo.")
+        window.location.href="Rattman-Relatórios.html"
+    }
+    else{
+        erro.innerHTML="ERRO, Credenciais inválidas."
+    }
+}
+</script>
+</body>

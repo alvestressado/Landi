@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Florense — Arquivo Aberto</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #141210;
+    color: #c8bfb0;
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+  }
+
+  header {
+    background: #1a1714;
+    border-bottom: 1px solid #2e2820;
+    padding: 28px 40px 24px;
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 45%; /* 16:9 */
+  background: #000;
+  border: 1px solid #2a1808;
+  overflow: hidden;
+  margin:0 auto;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+  .fl-flame { width: 28px; height: 36px; flex-shrink: 0; }
+
+  .fl-header-text h1 {
+    font-family: 'EB Garamond', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: #d4c4a0;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+  }
+
+  .fl-header-text p {
+    font-size: 14px;
+    color: #7a6e5e;
+    margin-top: 5px;
+    font-style: italic;
+    font-family: 'EB Garamond', serif;
+  }
+
+  nav {
+    background: #181512;
+    border-bottom: 1px solid #2e2820;
+    padding: 0 40px;
+    display: flex;
+    gap: 4px;
+  }
+
+  nav button {
+    background: none;
+    border: none;
+    padding: 11px 16px;
+    font-size: 13px;
+    color: #6a5e4e;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    font-family: 'Inter', sans-serif;
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  nav button:hover { color: #c8bfb0; }
+
+  nav button.ativo {
+    color: #c8a86a;
+    border-bottom: 2px solid #c8a86a;
+    font-weight: 500;
+  }
+
+  main {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 36px 24px;
+  }
+
+  .fl-section { display: none; }
+  .fl-section.ativo { display: block; }
+
+  .fl-section-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: #d4c4a0;
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #2c2620;
+  }
+
+  .fl-notice {
+    background: #1c1916;
+    border: 1px solid #2c2620;
+    border-radius: 5px;
+    padding: 14px 18px;
+    margin-bottom: 22px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .fl-notice svg { flex-shrink: 0; margin-top: 2px; }
+
+  .fl-notice p {
+    line-height: 1.7;
+    color: #8a7a62;
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+  }
+
+  .fl-entry p2{
+    line-height: 1.7;
+    color: #c5c4c1;
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+  }
+
+  .fl-entry {
+    background: #1c1916;
+    border: 1px solid #2c2620;
+    border-left: 2px solid #8a6a38;
+    border-radius: 0 5px 5px 0;
+    padding: 18px 22px;
+    margin-bottom: 16px;
+  }
+
+  .fl-entry-header {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 9px;
+    flex-wrap: wrap;
+  }
+
+  .fl-entry-date {
+    font-size: 12px;
+    color: #5a5040;
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+  }
+
+  .fl-entry-tag {
+    font-size: 11px;
+    background: #252018;
+    color: #8a7a52;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .fl-entry-2{
+    font-family: 'EB Garamond', serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: #851919;
+    margin-bottom: 8px;
+  }
+
+  .fl-entry-tag.alerta { background: #221510; color: #a05030; }
+  .fl-entry-tag.cuidado { background: #141c12; color: #5a8040; }
+
+  .fl-entry h3 {
+    font-family: 'EB Garamond', serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: #c8b88a;
+    margin-bottom: 8px;
+  }
+
+  .fl-entry p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #a09080;
+  }
+
+  .fl-divider {
+    border: none;
+    border-top: 1px solid #2c2620;
+    margin: 28px 0;
+  }
+
+  .fl-people-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .fl-person-card {
+    background: #1c1916;
+    border: 1px solid #2c2620;
+    border-radius: 5px;
+    padding: 16px;
+  }
+
+  .fl-person-card .nome {
+    font-weight: 500;
+    font-size: 14px;
+    color: #c8b88a;
+    margin-bottom: 3px;
+  }
+
+  .fl-person-card .papel {
+    font-size: 12px;
+    color: #5a5040;
+    font-style: italic;
+    font-family: 'EB Garamond', serif;
+    margin-bottom: 8px;
+  }
+
+  .fl-person-card .nota {
+    font-size: 13px;
+    color: #8a7a62;
+    line-height: 1.6;
+  }
+
+  .fl-regra {
+    background: #1c1916;
+    border: 1px solid #2c2620;
+    border-radius: 5px;
+    padding: 14px 18px;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .fl-regra .num {
+    font-family: 'EB Garamond', serif;
+    font-size: 20px;
+    color: #6a5030;
+    font-weight: 400;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .fl-regra .texto {
+    font-size: 14px;
+    color: #a09080;
+    line-height: 1.75;
+  }
+
+  .fl-regra .texto strong {
+    color: #c8b88a;
+    font-weight: 500;
+  }
+
+  footer {
+    background: #1a1714;
+    border-top: 1px solid #2e2820;
+    padding: 18px 40px;
+    text-align: center;
+    font-size: 12px;
+    color: #4a4030;
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <svg class="fl-flame" viewBox="0 0 28 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M14 2 C14 2, 23 11, 23 20 C23 27 19 33 14 35 C9 33 5 27 5 20 C5 11 14 2 14 2Z" fill="#7a4a1a" opacity="0.9"/>
+    <path d="M14 13 C14 13, 18 18, 18 23 C18 27 16 30 14 31 C12 30 10 27 10 23 C10 18 14 13 14 13Z" fill="#c87830" opacity="0.85"/>
+    <circle cx="14" cy="25" r="2.5" fill="#e8b060" opacity="0.7"/>
+  </svg>
+  <div class="fl-header-text">
+    <h1>Florense — Arquivo Aberto</h1>
+    <p>"Ninguém sobrevive sozinho. Essa é a única certeza que temos."</p>
+  </div>
+</header>
+
+<nav>
+  <button class="ativo" onclick="mudarAba('comunicados', this)">Comunicados</button>
+  <button onclick="mudarAba('pessoas', this)">Pessoas</button>
+  <button onclick="mudarAba('codigo', this)">Código de Conduta</button>
+  <button onclick="mudarAba('relatórios', this)">Relatório de Atividades</button>
+</nav>
+
+<main>
+
+  <section id="sec-comunicados" class="fl-section ativo">
+    <div class="fl-notice">
+      <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+        <circle cx="9" cy="9" r="8" stroke="#6a5030" stroke-width="1.2"/>
+        <line x1="9" y1="7" x2="9" y2="13" stroke="#6a5030" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="9" cy="5" r="0.8" fill="#6a5030"/>
+      </svg>
+      <p>Este arquivo é mantido por Florense (eu). Se você encontrou isso, é porque eu quis que você encontrasse.</p>
+    </div>
+
+    <h2 class="fl-section-title">Comunicados recentes</h2>
+
+    <div class="fl-entry">
+      <div class="fl-entry-header">
+        <span class="fl-entry-date">12 de março, 2023</span>
+        <span class="fl-entry-tag cuidado">Localização segura</span>
+      </div>
+      <h3>O prédio iluminado ainda está de pé</h3>
+      <p>Saímos antes que pudessem nos encontrar, mas as lâmpadas ficaram. Quem precisar de abrigo: o último andar continua acessível pela escada de serviço nos fundos. Há mantimentos escondidos atrás do painel elétrico do 7º andar. Não acenda fogo — as luzes são suficientes. Não peguem 
+        o objeto deixado no terraço, é algo que eu quero que a MoonCompany encontre, sei que eles vão lá. As luzes serão acessas novamente após eles saírem, preciso mostrar algo a eles...
+      </p>
+    </div>
+
+    <div class="fl-entry">
+      <div class="fl-entry-header">
+        <span class="fl-entry-date">08 de março, 2023</span>
+        <span class="fl-entry-tag alerta">Atenção</span>
+      </div>
+      <h3>Sobre os homens da companhia</h3>
+      <p>Nem todos são inimigos. Há soldados lá dentro que não escolheram estar onde estão, assim como muitos de nós não escolhemos nada disso. Se cruzar com alguém fardado que demonstre hesitação, ofereça água antes de qualquer outra coisa. A hesitação é o começo.</p>
+    </div>
+
+    <div class="fl-entry">
+      <div class="fl-entry-header">
+        <span class="fl-entry-date">01 de março, 2023</span>
+        <span class="fl-entry-tag">Memória</span>
+      </div>
+      <h3>Para os 63 que estavam nas cabanas</h3>
+      <p>Sabemos o que aconteceu. Não sabemos onde vocês estão agora, se estão em algum lugar. Mas guardamos seus nomes. Cada um deles. Isso é o mínimo que podemos fazer.</p>
+    </div>
+
+    <hr class="fl-divider">
+
+    <div class="fl-entry">
+      <div class="fl-entry-header">
+        <span class="fl-entry-date">20 de fevereiro, 2023</span>
+        <span class="fl-entry-tag cuidado">Para novos</span>
+      </div>
+      <h3>Se você acaba de chegar</h3>
+      <p>Bem-vindo. Não perguntamos de onde você veio nem o que você fez para sobreviver até aqui. O passado pertence a você. O que importa é o que fazemos agora, juntos. Procure qualquer pessoa com um trapo amarelo no pulso, eles podem te ajudar a se situar.</p>
+    </div>
+  </section>
+
+  <section id="sec-pessoas" class="fl-section">
+    <h2 class="fl-section-title">Pessoas que formam isso aqui</h2>
+
+    <div class="fl-notice">
+      <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+        <circle cx="9" cy="9" r="8" stroke="#6a5030" stroke-width="1.2"/>
+        <line x1="9" y1="7" x2="9" y2="13" stroke="#6a5030" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="9" cy="5" r="0.8" fill="#6a5030"/>
+      </svg>
+      <p>Nomes reais só com consentimento. Usamos apelidos por segurança.</p>
+    </div>
+
+    <div class="fl-people-grid">
+      <div class="fl-person-card">
+        <div class="nome">Florense</div>
+        <div class="papel">Fundador, ferreiro</div>
+        <div class="nota">Não gosta de títulos. Faz o que precisa ser feito. Tem barba, cabelos escuros, e tinha a lâmina que a mulher especial ajudou a criar.</div>
+      </div>
+      <div class="fl-person-card">
+        <div class="nome">A Mulher Especial</div>
+        <div class="papel">Metalurgia, desaparecida</div>
+        <div class="nota">Não sabemos onde ela está agora. O conhecimento que deixou conosco ainda vive nas ferramentas que temos. Estamos tentando continuar sem ela.</div>
+      </div>
+      <div class="fl-person-card">
+        <div class="nome">Os 20 das Cabanas</div>
+        <div class="papel">Sobreviventes</div>
+        <div class="nota">Dos 63 anteriores, vinte chegaram até nós antes de tudo desabar. Cada um deles vale por todos os que ficaram para trás.</div>
+      </div>
+      <div class="fl-person-card">
+        <div class="nome">Você</div>
+        <div class="papel">—</div>
+        <div class="nota">Se você está lendo isso, já faz parte. Não há cerimônia de entrada.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sec-codigo" class="fl-section">
+    <h2 class="fl-section-title">Como tentamos viver</h2>
+
+    <div class="fl-notice">
+      <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+        <circle cx="9" cy="9" r="8" stroke="#6a5030" stroke-width="1.2"/>
+        <line x1="9" y1="7" x2="9" y2="13" stroke="#6a5030" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="9" cy="5" r="0.8" fill="#6a5030"/>
+      </svg>
+      <p>Não são ordens. São escolhas que fazemos todo dia. Quem não conseguir cumprir alguma delas, conversa com alguém, ninguém é expulso por ser humano.</p>
+    </div>
+
+    <div class="fl-regra">
+      <div class="num">I</div>
+      <div class="texto"><strong>A luz é de todos.</strong> Não acumulamos lâmpadas nem suprimentos além do necessário. O que temos, dividimos. Sempre.</div>
+    </div>
+    <div class="fl-regra">
+      <div class="num">II</div>
+      <div class="texto"><strong>Ninguém é descartável.</strong> A companhia trata pessoas como recursos. Nós não fazemos isso. Cada vida vale o custo que for necessário para protegê-la.</div>
+    </div>
+    <div class="fl-regra">
+      <div class="num">III</div>
+      <div class="texto"><strong>Hesitação não é fraqueza.</strong> Se você hesitou antes de fazer algo ruim — isso importa. Esse momento de hesitação é onde você ainda é você.</div>
+    </div>
+    <div class="fl-regra">
+      <div class="num">IV</div>
+      <div class="texto"><strong>Cuidamos dos que não podem se cuidar.</strong> Crianças, feridos, os que perderam alguém recentemente. Eles têm prioridade. Sem discussão.</div>
+    </div>
+    <div class="fl-regra">
+      <div class="num">V</div>
+      <div class="texto"><strong>Não julgamos o passado.</strong> O mundo acabou de formas que ninguém pediu. O que você fez para chegar até aqui é seu. O que fazemos juntos a partir de agora é de todos.</div>
+    </div>
+    <div class="fl-regra">
+      <div class="num">VI</div>
+      <div class="texto"><strong>A lâmina existe, mas não é a resposta.</strong> Sabemos que há coisas que não podem ser conversadas. Mas enquanto puder ser de outro jeito, tentamos de outro jeito primeiro.</div>
+    </div>
+  </section>
+
+  <section id="sec-relatórios" class="fl-section">
+     <h2 class="fl-section-title">Relatório sobre as nossas atividades</h2>
+    <div class="fl-notice">
+      <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+        <circle cx="9" cy="9" r="8" stroke="#6a5030" stroke-width="1.2"/>
+        <line x1="9" y1="7" x2="9" y2="13" stroke="#6a5030" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="9" cy="5" r="0.8" fill="#6a5030"/>
+      </svg>
+
+        <div class="fl-entry">
+      <div class="fl-entry-header">
+        <span class="fl-entry-tag cuidado">06/01/2023</span>
+      </div>
+      <h3>RM-001</h3>
+      <p2>é a primeira vez que eu faço isso... Bem, pra contextualizar quem esteja lendo isso: o mundo acabou. <br>
+    Inicialmente, eu achava que isso iria ser resolvido rápido pelo Nashell, que ele iria perceber a besteira que fez, que ele fosse voltar atrás ou no mínimo ajudar. 
+    Eu não podia estar mais errado... Invés de tentar curar as pessoas da doença que ele mesmo amaldiçoou o mundo com, ele usa os órgãos das pessoas infectadas para continuar
+    extraindo minério, são quantidades mínimas mas ele faz questão de cada grama para aquela garota. A organização continua tendo influência e fundos por conta de Vance, ele é 
+    um homem perverso, faz qualquer coisa pelo dinheiro, acoberta toda e qualquer podridão de Nashell. Eu fazia parte também, mas agora eu não quero mais estar com pessoas 
+    assim. A únicas pessoas que eu via como boas naquele lugar era a Dra. Charllote e o Dr. Elias... Eu não sei o paradeiro de nenhum deles, mas conversei com Charllote 
+    antes dela sair da companhia, ela falava sobre querer encontrar Alice para curar a garota...</p>
+    </div>
+      </div>
+<div class="fl-notice">
+     <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+        <circle cx="9" cy="9" r="8" stroke="#6a5030" stroke-width="1.2"/>
+        <line x1="9" y1="7" x2="9" y2="13" stroke="#6a5030" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="9" cy="5" r="0.8" fill="#6a5030"/>
+      </svg>
+      <div class="fl-entry">
+      <div class="fl-entry-header">
+        <span class="fl-entry-tag cuidado">06/01/2023</span>
+      </div>
+      <h3>RM-001.2</h3>
+      <p2>Meu plano com esse lugar é criar uma forma de impedir a Moon Company, eu não consigo ficar sentado esperando o Nashell matar o mundo inteiro em prol dela. Eu não posso 
+        diretamente fazer mal a ela ou a ninguém, mas posso impossibilitar os trabalhos dele. Sei que existem seres humanos dentro daquele lugar que não tiveram escolha a não ser
+        se aliar com demônios para sobreviver, e eu planejo criar esse local para ser um refúgio para todos, assim como é o meu. No momento, eu estou sozinho, mas tenho alguns 
+        relatórios da Moon Company então sei onde existem pessoas a mercê da Hi'fo, eu vou encontrar o máximo de pessoas que eu puder.
+      </p>
+    </div>
+      </div>
+    
+      <div class="fl-notice">
+      <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+        <circle cx="9" cy="9" r="8" stroke="#6a5030" stroke-width="1.2"/>
+        <line x1="9" y1="7" x2="9" y2="13" stroke="#6a5030" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="9" cy="5" r="0.8" fill="#6a5030"/>
+      </svg>
+      <div class="fl-entry">
+      <div class="fl-entry-header">
+        <span class="fl-entry-tag cuidado">09/01/2023</span>
+      </div>
+      <h3>RM-002</h3>
+      <p2>Hoje fiz uma viagem até uma área florestal onde estava escutando sons que pareciam de humanos. Quando eu cheguei lá, haviam muitas cabanas e uma comunidade bem grande 
+        de pessoas, acho que o maior grupo que encontrei até então. Eu conversei com eles e consegui me enturmar bem, falei sobre meus objetivos e eles concordaram em participar 
+        de um grupo. Eles são pessoas boas, mas estão tendo problemas em lidar com o manejamento de suprimentos em geral, vou ajudar eles com isso e talvez nós nos iremos ficar 
+        por aqui mesmo, parece um local seguro com esses luzes.
+      </p>
+    </div>
+        </div>
+
+      <div class="fl-notice">
+     <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+        <circle cx="9" cy="9" r="8" stroke="#6a5030" stroke-width="1.2"/>
+        <line x1="9" y1="7" x2="9" y2="13" stroke="#6a5030" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="9" cy="5" r="0.8" fill="#6a5030"/>
+      </svg>
+      <div class="fl-entry">
+      <div class="fl-entry-header">
+        <span class="fl-entry-tag cuidado">16/01/2023</span>
+      </div>
+      <h3>RM-003</h3>
+      <p2>Apesar de ficarmos tranquilos a maior parte do tempo, não posso deixar de pensar que existem outras pessoas fora dos limites dessa floresta, e elas também precisam 
+        de um local seguro como esse... Hoje de manhã eu cheguei na conclusão que eu não posso ficar aqui esperando que apareçam mais pessoas, eu preciso encontrar elas, talvez
+        estejam muito assustadas para sair de onde estão. Eu consigo me defender sozinho contra qualquer infectado de variação inicial, o problema é aquela coisa... Perto do fim 
+        da floresta tem uma coisa, algo que mantém todo mundo aqui dentro. Parece que aquele infectado é a união de tecido orgânico de muitos outros, o problema é que isso não 
+        é algo que ele poderia fazer sozinho, não é como se existisse algo que pudesse se construir sozinho com o corpo de outros, então acreditamos que haja algum outro infectado 
+        criando essas coisas. Sair da floresta pela entrada é suicídio, ele não vai permitir. Vou tentar sair pela lateral hoje, disseram que ele não atua lá.
+      </p>
+    </div>
+      </div>
+
+      <div class="fl-notice">
+     <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+        <circle cx="9" cy="9" r="8" stroke="#6a5030" stroke-width="1.2"/>
+        <line x1="9" y1="7" x2="9" y2="13" stroke="#6a5030" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="9" cy="5" r="0.8" fill="#6a5030"/>
+      </svg>
+      <div class="fl-entry">
+      <div class="fl-entry-header">
+        <span class="fl-entry-tag cuidado">20/01/2023</span>
+      </div>
+      <h3>RM-004</h3>
+      <p2>A boa notícia é que eu consegui, saí daquela floresta, agora nem sei como entrar direito denovo... Aquela coisa de tendões me perseguiu, eu nunca corri tão rápido na 
+        minha vida. Sabe como é a sensação de poder perder sua vida se você não correr suficiente de uma coisa que é feita literalmente só de massa muscular e fibras? eu achei que 
+        iria morrer. Eu trouxe comigo comida e água suficiente pra uns 4 dias sem precisar voltar para a floresta pelo menos, vou ter que encontrar mais conforme eu vago. Peguei uma das 
+        lâmpadas que tinha nas cabanas para trazer comigo, acredito que a companhia tenha usado Selenita nesses LEDs, então eles devem servir de algo quando estiver vindo algum infectado.
+      </p>
+    </div>
+      </div>
+
+      <div class="fl-notice">
+     <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+        <circle cx="9" cy="9" r="8" stroke="#6a5030" stroke-width="1.2"/>
+        <line x1="9" y1="7" x2="9" y2="13" stroke="#6a5030" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="9" cy="5" r="0.8" fill="#6a5030"/>
+      </svg>
+      <div class="fl-entry">
+      <div class="fl-entry-header">
+        <span class="fl-entry-tag cuidado">27/01/2023</span>
+      </div>
+      <h3>RM-005</h3>
+      <p2>Encontrei alguns refugiados em um prédio abandonado relativamente perto da floresta, eu devo ter dado umas 3 voltas nesse lugar antes de encontrar eles, são realmente mestres da 
+        furtividade. Tive que dividir boa parte dos meus mantimentos com eles, não esperava ter que fazer isso então acabei ficando sem. Vou ter que antecipar minha volta para a floresta já que 
+        precisamos de comida...
+      </p>
+    </div>
+      </div>
+
+      <div class="fl-notice">
+     <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+        <circle cx="9" cy="9" r="8" stroke="#6a5030" stroke-width="1.2"/>
+        <line x1="9" y1="7" x2="9" y2="13" stroke="#6a5030" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="9" cy="5" r="0.8" fill="#6a5030"/>
+      </svg>
+      <div class="fl-entry">
+      <div class="fl-entry-header">
+        <span class="fl-entry-tag cuidado">29/01/2023</span>
+      </div>
+      <h3>RM-006</h3>
+      <p2>Quando estava chegando na floresta de novo hoje, eu vi acho que uns 3 ou 4 agentes da companhia indo diretamente no sentido que o infectado dos tendões, não pude avisar eles porque iria fazer 
+        barulho e atrair aquela coisa pra mim... Quando estava passando com os meus novos companheiros, eu senti algo me observando no meio das árvores, eu procurei muito com a lanterna mas não pude enxergar nada. 
+        O problema é que a claridade deve ter atraído aquela coisa dos tendões... Nós tivemos que correr até as cabanas, onde ele não conseguiu nos alcançar. Mas quando eu cheguei lá, eles me disseram que as luzes não 
+        iriam durar para sempre. Eu pretendo sair com todos com todos descansados em breve usando todos os LEDs restantes em breve.
+      </p>
+    </div>
+      </div>
+
+      <div class="fl-notice">
+     <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+        <circle cx="9" cy="9" r="8" stroke="#6a5030" stroke-width="1.2"/>
+        <line x1="9" y1="7" x2="9" y2="13" stroke="#6a5030" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="9" cy="5" r="0.8" fill="#6a5030"/>
+      </svg>
+      <div class="fl-entry">
+      <div class="fl-entry-header">
+        <span class="fl-entry-tag cuidado">02/02/2023</span>
+      </div>
+      <h3>RM-007</h3>
+      <p2>O plano de sair da floresta usando os LEDs foi desastroso... Nós nos organizamos, pensamos em tudo, éramos cerca de 72 antes de começarmos o plano... agora somos 26. O infectado dos tendões parecia ter raízes em 
+        todos os locais, ele sabia exatamente onde todos estavam. O pior de tudo é que algo nele mudou, não sei se foi algo por causa dos agentes que ele deve ter matado ou sei lá, mas ele não reagia tão negativamente à luz mais... 
+        Antes parecia que ela conseguiria até matar ele, mas na hora de sairmos parecia só algo que incomodava levemente. Durante nossa fuga, ele pegou muitos de nós, mas além dele houve também um outro, algo que corria mais rápido que 
+        qualquer coisa que eu já tenha visto na vida, ser o alvo dele era praticamente uma sentença, ele devia ter uns 2 metros, não se importava com luzes nem com tiros nem nada, não consigo acreditar que aquela coisa um dia foi um humano. 
+        No momento, estamos todos no mesmo prédio abandonado que eu achei os refugiados antes. Pretendemos ficar aqui por um tempo já que como tem vários andares, podemos saber se algo está subindo ou não...
+      </p>
+    </div>
+      </div>
+
+      <div class="fl-notice">
+     <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+        <circle cx="9" cy="9" r="8" stroke="#6a5030" stroke-width="1.2"/>
+        <line x1="9" y1="7" x2="9" y2="13" stroke="#6a5030" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="9" cy="5" r="0.8" fill="#6a5030"/>
+      </svg>
+      <div class="fl-entry">
+      <div class="fl-entry-header">
+        <span class="fl-entry-tag cuidado">04/02/2023</span>
+      </div>
+      <h3>RM-008</h3>
+      <p2>Boas notícias! encontramos um posto com mais pessoas lá, dentre essas pessoas, havia um rosto familiar para mim... Pois é, a mulher que eu nunca soube oque fazia exatamente dentro da corporação. Ela me reconheceu também, 
+        descobri que ela saiu de lá pouco tempo depois do incidente com o primeiro infectado de variante intermediária, ela disse que lidar na linha de frente contra esse tipo de coisa não era a praia dela... Acho que eu entendo ela, mas de qualquer forma 
+        não tem mais como escapar da realidade. A novidade foi que ela tem uma quantidade razoável do minério que eles usavam na garota de Nashell, ela disse que podia fazer uma "arma invencível" de acordo com suas palavras, mas precisava de 
+        um local adequado, eu falei sobre o prédio e ela disse que servia. Quando chegamos aqui, ela passou um tempo junto de alguns apartamentos saindo e entrando procurando algum com um fogão funcional, eu perguntei o motivo e ela disse que o ponto de fusão 
+        desse mineral era extremamente pequeno, então poderia moldar ele com pouco calor. Ela achou um apartamento com um fogão eventualmente, e me deu posteriormente uma espécie de faca sem punhal (um lâmina né) daquele minério e disse para em hipótese nenhuma 
+        cortar um ser humano com aquilo. Depois de me entregar a lâmina, ela disse que iria fazer algo particular, e assim eu não a vi mais desde então
+      </p>
+    </div>
+      </div>
+
+      <div class="fl-notice">
+     <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+        <circle cx="9" cy="9" r="8" stroke="#6a5030" stroke-width="1.2"/>
+        <line x1="9" y1="7" x2="9" y2="13" stroke="#6a5030" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="9" cy="5" r="0.8" fill="#6a5030"/>
+      </svg>
+      <div class="fl-entry">
+      <div class="fl-entry-header">
+        <span class="fl-entry-tag cuidado">05/02/2023</span>
+      </div>
+      <h3>RM-008</h3>
+      <p2>A lâmina daquela mulher finalmente entrou em ação hoje, e ela é incrívelmente eficiente contra infectados. Eu acabei precisando usar para me livrar de alguns infectados de variante inicial hoje, e ela parece ser uma espécie de "castigo" para o vírus da Hi'fo. 
+        A lâmina parece matar eles de dentro para fora, o infectado em específico que eu usei se deteriorou em segundos na minha frente, e pensar que a companhia poderia fazer até mesmo projéteis com esse material mas não o fazem pela garota de Nashell... Nós estamos coletando o máximo 
+        de Selenita dos infectados possível para fabricarmos nossas próprias lâmpadas e não precisar contatar a corporação.
+      </p>
+    </div>
+      </div>
+
+      <div class="fl-notice">
+     <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+        <circle cx="9" cy="9" r="8" stroke="#6a5030" stroke-width="1.2"/>
+        <line x1="9" y1="7" x2="9" y2="13" stroke="#6a5030" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="9" cy="5" r="0.8" fill="#6a5030"/>
+      </svg>
+      <div class="fl-entry">
+      <div class="fl-entry-header">
+        <span class="fl-entry-tag cuidado">15/02/2023</span>
+      </div>
+      <h3>RM-009</h3>
+      <p2>Aconteceram coisas bem relevantes recentemente. Primeiramente, a companhia foi até nosso prédio, eu recebi eles tranquilamente, conversei com os agentes e os mostrei a lâmina. Eu tinha certeza que Nashell ficará sabendo disso e voltará aqui para destruir tudo, então evacuei tudo antes
+         que isso pudesse acontecer. Com ajuda de alguns refugiados, fizemos switchs para os LEDs e deixamos lá apenas as lâmpadas para que os agentes entrassem e nós pudessemos desligar depois. Mas eu não quero matar ninguém, não quero ferir homens que podem ser inocentes, então também deixei a lâmina lá. 
+         A lâmpada também parece manter os infectaods longe, quase como as lâmpadas, ela acaba mais ou menos funcionando como um repelente também, e eu espero que os agentes possam perceber que uma lâmina daquele minério que nem estava puro é quase tão eficiente quanto as lâmpadas, espero mais ainda que possam usar essa lâmina 
+         em algum infectado, ou fazer testes ao menos... Por favor, percebam...<br>
+         Nós saímos do prédio no final, e agora estamos nos abrigando em uma zona industrial, nós temos minério suficiente para fabricarmos mais uma lâmina e algumas lâmpadas, mas isso não é algo sustentável no longo prazo. Precisamos fazer algo sobre a corporação e seu monopólio de mineral lunar. Se não, teremos matado 
+         todos os infectados de variante inicial e não teremos minério suficiente para nos defendermos de coisas como aquele demônio branco enorme. Mas eu não posso buscar vingança, não posso colocar mais vidas em risco, já perdemos muitos, eu só quero que possamos nos defender propriamente.
+      </p>
+    </div>
+      </div>
+
+      <div class="fl-notice">
+     <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+        <circle cx="9" cy="9" r="8" stroke="#6a5030" stroke-width="1.2"/>
+        <line x1="9" y1="7" x2="9" y2="13" stroke="#6a5030" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="9" cy="5" r="0.8" fill="#6a5030"/>
+      </svg>
+      <div class="fl-entry">
+      <div class="fl-entry-header">
+        <span class="fl-entry-tag cuidado">29/02/2023</span>
+      </div>
+      <h3>RM-010</h3>
+      <p2>Enquanto eu e um pequeno grupo vagavamos pelos arredores da zona industrial, encontramos novamente aquela mulher que me deu a lâmina, ela pediu desculpas por ter fugido e disse que o fez porque tinha pessoas que dependiam dela. Eu perguntei a ela o motivo dela não ter trazido essas pessoas para o prédio, e ela disse 
+        que não sabia se podia confiar já que eu já fiz parte da corporação, mas que depois de ver que nós abandonamos o prédio quando a corporação foi lá, ela passou a acreditar. Nós fomos até onde essas tais pessoas estariam, e se tratava de 2 crianças, acho que no máximo uns 11 anos cada uma, elas estavam com muita fome então 
+        retornamos imediatamente para a fábrica que estavamos passando os dias para dar comida a eles. Enquanto eles comiam, eu conversei com aquela mulher, e ela me disse que gostaria de cuidar daquelas crianças pois se sentia na obrigação de manter a ingenuidade e inocência viva naquele lugar, eu concordei com ela e todo o grupo se 
+        prontificou a cuidar delas também. Além disso, a mulher nos ajudou a forjar mais duas daquelas lâminas, para que pudessemos nos defender mais facilmente dos infectados, eu aproveitei a oportunidade para indagar ela sobre o motivo dela ter me dado uma lâmina antes se ela não tinha certeza se podia confiar mesmo em mim, ela respondeu 
+        que foi com a minha cara.<br> 
+        Acho que não relatei isso aqui ainda, mas como somos um grupo grande, costumamos revezar os turnos para dormimos enquanto tem outros acordados, e estava na minha vez de ficar acordado naquela hora... Eu tava olhando para uma região de mata fechada, não estava prestando tanta atenção assim, quando eu percebi que desde o momento que eu acordei 
+        até o momento que eu fui dormir e acordei de novo, tinham um par de luzes brancas lá no fundo, sempre mirando para a fábrica. Eu me levantei pra tentar enxergar melhor, e quando eu dei o primeiro sinal de ter percebido, aquela coisa branca enorme de antes se moveu tão rápido que eu nem soube que direção ela foi exatamente. Eu imediatamente 
+        acordei todos e falei sobre aquela coisa estar na espreita, a mulher me disse que já conhecia aquele bicho e que ele aparentemente era "amigo" das crianças, mas que enxergava a amizade de uma forma distorcida, então devia estar apenas seguindo as mesmas. Quando souberam do que se tratava, os sobreviventes da floresta entraram em pânico, alguns 
+        diziam que deveriamos deixar as crianças e irmos embora em segurança, outros eram completamente opostos a isso e diziam que com duas lâminas nós poderiamos ferir aquele monstro. Eu tomei a decisão de manter as crianças, e reforcei que nós não iremos abandonar elas enquanto tivermos capacidade de as proteger, mas que para evitar de sermos vítimas 
+        daquele demônio, precisavamos voltar para algum prédio que nos daria mais noção de se tem algo próximo ou não. Alguns concordaram, outros disseram que seria pedir para morrer e escolheram sair do grupo naquele momento... Quando os que escolheram sair se afastaram mata adentro, ouvimos sons de gritos e uma agitação vinda de lá, quando tentamos entrar 
+        para olhar, havia tido um banho de sangue em questão de segundos... Aquela coisa tinha matado cerca de 3 pessoas em questão de segundos, haviam outras 2 vivas ainda mas com seus fígados praticamente expostos no chão agonizando... Nós sabíamos que não tinhamos como as salvar, então apenas acabamos com seu sofrimento mais rápido. 
+      </p>
+    </div>
+      </div>
+
+      <div class="fl-notice">
+     <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+        <circle cx="9" cy="9" r="8" stroke="#6a5030" stroke-width="1.2"/>
+        <line x1="9" y1="7" x2="9" y2="13" stroke="#6a5030" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="9" cy="5" r="0.8" fill="#6a5030"/>
+      </svg>
+      <div class="fl-entry">
+      <div class="fl-entry-header">
+        <span class="fl-entry-tag cuidado">04/03/2023</span>
+      </div>
+      <h3>RM-011</h3>
+      <p2>Conseguimos nos situar em um prédio bem perto da zona industrial, temos uma visão ampla do local e podemos ver até mesmo o prédio da Moon Company no horizonte. Utilizamos as lanternas para proteger as entradas e montamos nossas dependências no 4º andar (o prédio tem 6 andares no total). 
+        Enquanto arrumavamos as coisas, conversei mais com alguns dos meus colegas e percebi uma crescente preocupação relacionada àquela coisa branca, ela parece ter seguido agente mesmo quando nós estavamos vindo para o prédio, alguns deles dizem ter ouvido o sussurrar de uma garota chamando eles pelo nome para se distanciarem 
+        do grupo, mas ninguém seguiu as vozes. Todos parecem concordar que aquela coisa por algum motivo não nos ataca quando estamos organizados em grupo... Mas por que ela teria atacado os 6 que se desvincularam do grupo maior? ainda seriam um grupo... Eu acredito em outra explicação: Aquilo não ataca pela presença da lâmina, por saber que é algo que pode o ferir.
+        Se não for isso, não faço ideia.
+      </p>
+    </div>
+      </div>
+
+      <div class="fl-notice">
+     <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+        <circle cx="9" cy="9" r="8" stroke="#6a5030" stroke-width="1.2"/>
+        <line x1="9" y1="7" x2="9" y2="13" stroke="#6a5030" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="9" cy="5" r="0.8" fill="#6a5030"/>
+      </svg>
+      <div class="fl-entry">
+      <div class="fl-entry-header">
+        <span class="fl-entry-tag cuidado">08/03/2023</span>
+      </div>
+      <h3>RM-012</h3>
+      <p2>Enquanto estavamos arrumando as coisas para nossa estadia no prédio, percebemos que estavamos sem tanta comida para todos. Assim, eu decidi sair com um grupo de mais 2 pessoas e levei uma das lâminas comigo. Nós não fomos muito longe, só até a esquina, onde já sabiamos que existia um mercado que ainda não havia sido saqueado, conseguimos um pouco de comida 
+        enlatada e água, mas ainda acredito que tenhamos que fazer outras viagens mais longe. Acho que eu não escrevi isso aqui ainda, então só para deixar registrado para os que leiam, a nossa procura por mantimentos é 100% baseada no "mapa" de subsistência da Moon Company, um documento interno das equipes de patrulha que tem vários locais que ainda não foi registrado 
+        saques e coisas do gênero. Além disso, é meio raro mas nós também nos guiamos por pichações ao longo da cidade, com o fim das leis tradicionais é normal que comecem a existir facções de sobreviventes, e de certa forma nós também somos uma... A corporação parece ignorar as facções que não são contrárias a ela (todas são a favor, tendo em vista que a corporação não
+        efetivamente ataca humanos e só dá mantimentos basicamente), então acredito que a maioria dos agentes de lá nem saibam sobre a existência delas. Fora da corporação, essas facções constantemente colidem entre si, mas na realidade só existe uma atualmente realmente relevante: Eles se denominam de "CSN" que se traduz para Comitê de Segurança Nacional. 
+        Digo que são o único grupo relevante por serem os únicos realmente unificados, eles não são hostis com os outros, e nós inclusive já fizemos acordos com alguns deles para a troca de armamentos anteriormente. A questão é que eles não são tão grandes, o grupo total é formado de no máximo umas 20 pessoas, então é muito comum que esses grupos apareçam e desapareçam muito rapidamente... 
+        Acredito que o grupo mais relevante no momento seja o nosso, o único digno de aparecer nos relatórios oficiais da Moon Company... Isso seria algo para se orgulhar talvez?
+      </p>
+    </div>
+      </div>
+
+      <div class="fl-notice">
+     <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+        <circle cx="9" cy="9" r="8" stroke="#6a5030" stroke-width="1.2"/>
+        <line x1="9" y1="7" x2="9" y2="13" stroke="#6a5030" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="9" cy="5" r="0.8" fill="#6a5030"/>
+      </svg>
+      <div class="fl-entry">
+      <div class="fl-entry-header">
+        <span class="fl-entry-tag cuidado">13/03/2023</span>
+      </div>
+      <h3>RM-012</h3>
+      <p2>A mulher das lâminas foi embora hoje pela manhã, ela levou uma das lâminas e disse que precisava levar as crianças até algum lugar... Eu não entendi e ela não explicou para ninguém, só foi embora sem dizer muito. Não sei oque pensar, e não sei como ela pretende sobreviver dessa forma. Nós tentamos ao menos pedir que ela deixasse as crianças, que não seria seguro levar 
+        crianças indefesas lá para fora com a presença daquela coisa branca possivelmente rondando por perto e tantas outras coisas inimagináveis. Ela disse que iria se defender com a lâmina, e tudo que ela me disse foi que aquele local cheio de pessoas era um alvo muito fácil para a criatura, que parecia ter alguma fixação no grupo por algum motivo. Eu a segui até o térreo e ela me disse que 
+        a criatura quando ela estava só com as crianças não era tão agressiva, não era tão aparente e muito mais fácil de prever, ela me disse que algo no grupo fazia a criatura ficar inquieta e que não sabe o motivo dela não atacar diretamente mas não consegue pregar os olhos a noite com os barulhos de rosnados vindos do lado de fora. Eu entendo o lado dela, mas não acho que sair do prédio seja 
+        a melhor decisão, a criatura justamente só ataca os que saem, e eu disse isso a ela no que ela me respondeu que esse era o motivo de levar uma das lâminas com ela. No fim, ela me desejou boa sorte com o resto do pessoal, que agora somavam 14 com os novos que haviamos encontrado recentemente, e agradeceu pela ajuda. Eu realmente espero que dê tudo certo com ela, sou eternamente grato àquela mulher. 
+      </p>
+    </div>
+      </div>
+
+      <div class="fl-notice">
+     <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+        <circle cx="9" cy="9" r="8" stroke="#6a5030" stroke-width="1.2"/>
+        <line x1="9" y1="7" x2="9" y2="13" stroke="#6a5030" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="9" cy="5" r="0.8" fill="#6a5030"/>
+      </svg>
+      <div class="fl-entry">
+      <div class="fl-entry-header">
+        <span class="fl-entry-tag cuidado">15/03/2023</span>
+      </div>
+      <h3>RM-013</h3>
+      <p2>Hoje de manhã recebemos a visita do representante de um outro grupo de sobreviventes, eles disseram que haviam visto o prédio iluminado e guardado por homens armados e vieram pensando que era algum tipo de área segura da corporação, então vieram. Nós os explicamos oque éramos e eles ficaram aliviados de saberem que não eramos hostis. Eram  3 homens e 4 mulheres no grupo, todos eles se uniram ao nosso pessoal, 
+        disseram terem visto coisas horríveis sendo feitas pelos agentes da organização, mas dependiam tanto da organização que não poderiam ignorar a possibilidade dela dar mantimentos para eles, que estavam tendo dificuldades com isso. Eles também relatarem terem sido vítima de outros grupos que buscavam suprimentos, e que inicialmente eram 9. 
+        Eu perguntei de onde tinham vindo, e eles disseram que vieram da floresta ao norte... Mas ninguém sai daquele local com vida...Eu vi com meus olhos.<br>
+        Imediatamente ao dizerem isso, os homens armados do nosso grupo levantaram suas armas em direção a eles, que se assustaram e perguntaram oque tinha acontecido, eu falei que naquela floresta tem um infectado que a esse ponto deve ser uma variante avançada da infecção, composto completamente de tendões e que nunca permitira que eles saíssem da floresta sem baixas. Eles insistiram dizendo que não haviam visto nada disso 
+        e que a floresta era quase que totalmente silenciosa, eles só relatavam animais agindo estranho, mas isso poderia ser explicado pela ausência da lua. Eu não podia se eles estavam falando a verdade ou não, mas também não podia arriscar matar 7 pessoas por uma dúvida, então os deixei no 6º andar sob a constante vigilância de um grupo armado enquanto nós iriamos checar a história deles. Pretendo ir com 
+        um grupo de mais 3 pessoas até a floresta para checar o estado dela. Caso não hajam mais perigos lá, seria o lugar ideal para habitarmos.
+      </p>
+    </div>
+      </div>
+
+      <div class="fl-notice">
+     <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+        <circle cx="9" cy="9" r="8" stroke="#6a5030" stroke-width="1.2"/>
+        <line x1="9" y1="7" x2="9" y2="13" stroke="#6a5030" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="9" cy="5" r="0.8" fill="#6a5030"/>
+      </svg>
+      <div class="fl-entry">
+      <div class="fl-entry-header">
+        <span class="fl-entry-tag cuidado">18/03/2023</span>
+      </div>
+      <h3>RM-012</h3>
+      <p2>A mulher das lâminas foi embora hoje pela manhã, ela levou uma das lâminas e disse que precisava levar as crianças até algum lugar... Eu não entendi e ela não explicou para ninguém, só foi embora sem dizer muito. Não sei oque pensar, e não sei como ela pretende sobreviver dessa forma. Nós tentamos ao menos pedir que ela deixasse as crianças, que não seria seguro levar 
+        crianças indefesas lá para fora com a presença daquela coisa branca possivelmente rondando por perto e tantas outras coisas inimagináveis. Ela disse que iria se defender com a lâmina, e tudo que ela me disse foi que aquele local cheio de pessoas era um alvo muito fácil para a criatura, que parecia ter alguma fixação no grupo por algum motivo. Eu a segui até o térreo e ela me disse que 
+        a criatura quando ela estava só com as crianças não era tão agressiva, não era tão aparente e muito mais fácil de prever, ela me disse que algo no grupo fazia a criatura ficar inquieta e que não sabe o motivo dela não atacar diretamente mas não consegue pregar os olhos a noite com os barulhos de rosnados vindos do lado de fora. Eu entendo o lado dela, mas não acho que sair do prédio seja 
+        a melhor decisão, a criatura justamente só ataca os que saem, e eu disse isso a ela no que ela me respondeu que esse era o motivo de levar uma das lâminas com ela. No fim, ela me desejou boa sorte com o resto do pessoal, que agora somavam 14 com os novos que haviamos encontrado recentemente, e agradeceu pela ajuda. Eu realmente espero que dê tudo certo com ela, sou eternamente grato àquela mulher. 
+      </p>
+    </div>
+      </div>
+
+      <div class="fl-notice">
+     <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+        <circle cx="9" cy="9" r="8" stroke="#6a5030" stroke-width="1.2"/>
+        <line x1="9" y1="7" x2="9" y2="13" stroke="#6a5030" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="9" cy="5" r="0.8" fill="#6a5030"/>
+      </svg>
+      <div class="fl-entry">
+      <div class="fl-entry-header">
+        <span class="fl-entry-tag cuidado">21/03/2023</span>
+      </div>
+      <h3>RM-013</h3>
+      <p2>Fomos até a floresta ontem, e a história daquele pessoal era falsa... Não sei por que eu cogitei acreditar, nós nem precisamos chegar perto do meio da floresta, entramos em uma das cabanas logo nos limites da mesma e tiramos essa foto para mostrar quando voltassemos... Quando estavamos voltando, tudo parecia extremamente quieto, sem nenhum ruído sequer, e mesmo assim todos ficamos alerta 
+        para qualquer eventualidade. Conseguimos chegar no prédio novamente, e depois que todos entraram, eu vi aquele par de olhos ao longe, ele não piscava, não parava. Quando aquilo percebeu que eu o tinha visto, ele simplesmente desapareceu como se nunca estivesse ali... Aquilo parecia maior... maior que a última vez que eu vi, agora devia ter uns 3 metros facilmente... De qualquer forma, eu entrei 
+        e fui direto mostrar a foto aos novos hóspedes, e eles admitiram que mentiram, mas o fizeram porque não queriam que suspeitassemos deles estarem infectados ou coisa assim... Eles disseram que conseguiram sair da floresta depois de terem feito um acordo com aquela coisa, eles na verdade eram 12 inicialmente, e tiveram que dar 3 como sacrifícios àquela coisa vermelha para que ela permitisse que eles saíssem. 
+        Os homens armados que estavam na sala sugeriram que expulsassemos aquelas pessoas, então fizemos uma votação para tal e tivemos quase que uma unanimidade na expulsão daqueles 7, sendo o único que votou para manter eles eu... Nós os colocamos para fora e fechamos a porta, eu fui o último a subir porque estava pensativo sobre isso, será que é 
+        justo mandar aqueles 7 para morte por terem escolhido viver anteriormente? Um dos nossos lemas é justamente a ideia de que não importa oque tiveram que fazer para sobreviver até chegarem, e sim apenas oque fazem aqui dentro... Quando estava finalmente subindo as escada, ouvi a voz de uma das mulheres pedindo para entrar... Seria algo normal, caso nós já não tivessemos tido certeza 
+        que eles não estavam mais ali, aquela voz não parecia desesperada para entrar, na verdade parecia extremamente carente de emoções no geral<br>
+        <img src="Imgs/image(2).jpg" width="100%">
+      </p>
+    </div>
+      </div>
+
+      <div class="fl-notice">
+     <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+        <circle cx="9" cy="9" r="8" stroke="#6a5030" stroke-width="1.2"/>
+        <line x1="9" y1="7" x2="9" y2="13" stroke="#6a5030" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="9" cy="5" r="0.8" fill="#6a5030"/>
+      </svg>
+      <div class="fl-entry">
+      <div class="fl-entry-header">
+        <span class="fl-entry-tag cuidado">27/03/2023</span>
+      </div>
+      <h3>RM-014</h3>
+      <p2>Era óbvio, mas continuar julgando quem vive e quem morre para a nossa sobrevivência é demais para mim... Não consigo continuar com isso. Nós sabemos que nossa sobrevivência vai ser muito facilitada se conseguirmos o mineral que a Moon Company mantém para aquela garota, vamos começar os trabalhos para conseguirmos isso.
+        Acreditamos que a forma mais eficiente de começarmos é organizando o pessoal e interceptando os comboios de suprimentos e entregas deles. Não podemos entrar diretamente em guerra com a corporação, sabemos que não temos poder de fogo suficiente, e é possível que eles tenham tecnologias que não conhecemos ainda. De qualquer forma, 
+        não podemos continuar deixando que eles se safem nos obrigando a fazer escolhas desumanas...
+      </p>
+    </div>
+      </div>
+      
+      <div class="fl-notice">
+     <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+        <circle cx="9" cy="9" r="8" stroke="#6a5030" stroke-width="1.2"/>
+        <line x1="9" y1="7" x2="9" y2="13" stroke="#6a5030" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="9" cy="5" r="0.8" fill="#6a5030"/>
+      </svg>
+      <div class="fl-entry">
+      <div class="fl-entry-header">
+        <span class="fl-entry-tag cuidado">02/04/2023</span>
+      </div>
+      <h3>RM-015</h3>
+      <p2>Começamos a nos mover, quebramos as lâmpadas de mais ou menos uns 6 postos de segurança da corporação, eles tinham quantidades significativas de suprimentos lá, trouxemos tudo que encontramos para o prédio novamente. Para tomarmos os postos, é sempre necessário rendermos alguns agentes da companhia, e apenas alguns apresentação resistência 
+        suficiente para ser necessária força letal, a maior parte deles não considera válido morrer por uma corporação que não os valoriza, e disseram alguns que esse tipo de pensamento cresceu muito após os relatos sobre a ida deles ao prédio iluminado. É bom saber que algo que eu fiz foi o motivo deles enxergarem a realidade, mas infelizmente não conseguimos 
+        recrutar novos membros por parte deles, os mesmos dizem que ainda preferem ficar lá pela segurança, pois agora sabem que nós não os mataremos...<br>
+        Outro acontecimento importante é que os membros daquela facção CSN entraram en contato conosco, eram 19 no total. Eles falaram sobre não estarem conseguindo lidar muito bem com toda a situação sozinhos, e que precisavam de mais pessoal para ter real liberdade. Eu expliquei sobre nosssos objetivos e o motivo de estarmos fazendo oque fazemos, e aparentemente 
+        eles concordaram o suficiente para se aliarem conosco. Somando todos os membros, somos agora 43, eles tem essa vontade de colocar nomes em todos os grupos, oque é irrelevante para a maioria mais antiga comigo, mas se é o desejo deles tudo bem, acho que nomearam nosso grupo como "Força Unificada pela Paz" ou algo genérico assim.
+      </p>
+    </div>
+      </div>
+
+      <div class="fl-notice">
+     <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+        <circle cx="9" cy="9" r="8" stroke="#6a5030" stroke-width="1.2"/>
+        <line x1="9" y1="7" x2="9" y2="13" stroke="#6a5030" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="9" cy="5" r="0.8" fill="#6a5030"/>
+      </svg>
+      <div class="fl-entry">
+      <div class="fl-entry-header">
+        <span class="fl-entry-tag cuidado">04/04/2023</span>
+      </div>
+      <h3>RM-016</h3>
+      <p2>
+      Durante a tomada de mais um dos postos da companhia, fomos previsíveis demais? não entendo como ainda, mas os homens de Maycon sabiam que estaríamos lá... Acredito que possa haver alguém interno que nos denunciou, mas por que fariam algo assim sabendo que correriam o mesmo perigo que nós? Não entendo isso ainda. Mas, de qualquer forma, nós fomos interceptados 
+      pelos homens de Maycon e o próprio, oque nos obrigou a corrermos para um prédio abandonado que havia ali perto. Lá dentro, nós tinhamos alguns companheiros nos esperando para se caso as coisas dessem errado, então foi mais fácil de evacuar todo mundo. Mas eu queria ficar, queria ver o rosto do Maycon de novo, e consegui encontrar ele... Eu tentei conversar com ele, 
+      perguntei se ele sabia oque a companhia fazia, ele respondeu que sabia mas que sem ela existindo as coisas seriam muito mais caóticas, eu disse que sem ela as coisas nem teriam escalado ao nível da lua desaparecer, ele ficou quieto. Depois disso, ele continuou falando sobre oque estar feito estar feito e não ter como voltar mais atrás e que agora a Moon Company ser uma 
+      força necessária, eu o indaguei sobre meu próprio grupo que parecia estar conseguindo subjugar a maior corporação até agora e permanecer sem baixas, disse que a companhia era falha porque o objetivo maior dela não era a proteção de todos e sim apenas o bem estar de uma menina em específico... Maycon ficou quieto, e eu fui embora pois os seus homens estavam chegando mais perto. 
+      Mas antes de ir, deixei uma das lâmpadas quebradas com ele, mostrando que dentro dela tinha resquícios de minérios, e disse que se eles quisessem poderiam fazer armas que matam até o diabo com aquilo.<br>
+      Quando chegamos no prédio principal novamente, eu convoquei uma reunião para entender quem havia nos denunciado, eu não queria expulsar nem punir ninguém, só queria saber o motivo de terem nos denunciado. Depois da minha pergunta, a maioria esmagadora ficou em silêncio, ninguém ousou falar nada, mas sei que no fundo todos conseguiam entender quem possivelmente fez isso tendo 
+      em vista que estamos em guerra contra a organização mais forte que existe no mundo atualmente... Eu reafirmei a eles que seja lá quem tiver feito isso, não será punido por ter sido humano, e mesmo assim ninguém se entregou. Apesar disso, acredito que talvez as diferenças tenham sido resolvidas com o silêncio de todos.
+      </p>
+    </div>
+      </div>
+
+      <div class="fl-notice">
+     <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+        <circle cx="9" cy="9" r="8" stroke="#6a5030" stroke-width="1.2"/>
+        <line x1="9" y1="7" x2="9" y2="13" stroke="#6a5030" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="9" cy="5" r="0.8" fill="#6a5030"/>
+      </svg>
+      <div class="fl-entry">
+      <div class="fl-entry-header">
+        <span class="fl-entry-tag cuidado">09/03/2023</span>
+      </div>
+      <h3>RM-17</h3>
+      <p2>
+        Em uma missão hoje, nós fomos surpreendidos e cercados por homens da corporação, eles nos renderam por um momento pela descrepância de armamento e acreditavamos que tudo estava perdido... Mas fomos salvos pelo pessoal da CSN no último instante, eles abriram fogo contra os agentes da corporação oque nos deu tempo suficiente para corrermos para longe e nos escondermos. Mas contando depois, 
+        percebemos que um dos nossos acabou ficando para trás, e isso me fez questionar a mim mesmo: quantas pessoas estão sendo mortas por minha causa nisso tudo? essa pessoa que desapareceu, quem foi? qual seu nome? ele tinha uma vida antes disso, e eu o arrastei para esse inferno por uma escolha minha. Sim, eu sei que posso dizer que ele concordou com isso, já que não forçamos ninguém a 
+        ir nas missões, mas mesmo assim foi ideia minha, eu tenho sangue nas mãos... Posso dizer que eu estou disposto a ser o cordeiro sacrificando minha moral pelo bem da sociedade futura, para que pelo menos exista uma sociedade futura...? Isso me faria idêntico ao Nashell, que faz algo imoral acreditando ser o melhor? Acho que no final, tudo são escolhas e sacrifícios são necessários não 
+        importa a ideologia... Eu não conhecia o homem que foi morto, seu nome foi esquecido pela humanidade.
+      </p>
+    </div>
+      </div>
+
+      <div class="fl-notice">
+     <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+        <circle cx="9" cy="9" r="8" stroke="#6a5030" stroke-width="1.2"/>
+        <line x1="9" y1="7" x2="9" y2="13" stroke="#6a5030" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="9" cy="5" r="0.8" fill="#6a5030"/>
+      </svg>
+      <div class="fl-entry">
+      <div class="fl-entry-header">
+        <span class="fl-entry-tag cuidado">13/04/2023</span>
+      </div>
+      <h3>RM-18</h3>
+      <p2>
+        Depois de algum tempo desde o começo do conflito, eu percebo que tem sido cada vez mais difícil de recrutar novas pessoas para o grupo, a maioria nos vê como terroristas e vê a companhia como boazinha... Parece que a corporação tem feito propaganda em massa para disseminar a ideia de que nós somos maus, estão realmente nos chamando de terroristas. Isso era esperado na verdade, não fomos pegos de 
+        surpresa, mas ainda penso que isso deve significar que nós estamos realmente atrapalhando eles, então tem um lado bom nisso. Temos pessoal suficiente para anos de conflito se o cenário continuar da forma que está de nós invadirmos, rendermos, roubarmos e sairmos sem perder nem tirar nenhum homem do nosso lado nem do de lá, não é algo que podemos chamar de fato de guerra. O problema é que conforme nós 
+        estamos escalonando os ataques, eles também reagem de forma mais pesada, com armamento maior e mais pessoal. Na nossa última missão, eles acabaram pegando mais um dos nossos, oque é algo incomum de acontecer mas eventualmente ocorre... Eu soube que aquela pessoa foi executada em transmissão para todos, e depois dada a um infectado canibal... Eu percebi algo com isso: 
+        assistindo a transmissão inteira, eu percebi que enquanto ele estava sendo devorado pelo infectado, tanto o seu corpo sem cabeça como o infectado tinham incisões no peito que ia até a barriga, acredito que a companhia tenha retirado parte de seu fígado antes de o matar, qual a diferença entre eles e aquela coisa branca demoníaca? Como as pessoas podem achar essa gente boa?
+      </p>
+    </div>
+      </div>
+
+      <div class="fl-notice">
+     <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+        <circle cx="9" cy="9" r="8" stroke="#6a5030" stroke-width="1.2"/>
+        <line x1="9" y1="7" x2="9" y2="13" stroke="#6a5030" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="9" cy="5" r="0.8" fill="#6a5030"/>
+      </svg>
+      <div class="fl-entry">
+      <div class="fl-entry-header">
+        <span class="fl-entry-tag cuidado">18/04/2023</span>
+      </div>
+      <h3>RM-19</h3>
+      <p2>
+        Por que eu tenho que lidar com isso sozinho? O líder da CSN não tem nem aparecido direito, parece que ele se dissolveu entre integrantes comuns... Eu sou sempre o único responsável por tudo, sempre o único que os manda para a morte, que não consegue confortar quando alguém é morto em combate, isso tem me cansado bastante. Tem momentos que eu não consigo pregar os olhos e dormir, pensando sobre a corporação 
+        invadir o prédio de repente e nós não conseguirmos nos defender porque o lider estava dormindo... Eu não posso colocar essa responsabilidade nas costas de outra pessoa, por mais que eu queira muito, seria injusto. Eu devo carregar meu fardo só eu, afinal isso é oque eu sou. Os infectados de variante inicial praticamente foram exterminados a esse ponto, nós nem nos preocupamos mais com eles tanto, o maior perigo 
+        do momento são os homens da corporação que parecem terem recebido ordens de nos caçar diretamente. E apesar de toda essa guerra, eu percebo ele, eu percebo que todo lugar que eu vou, aquela coisa tem me seguido, não importa onde seja, ele deve estar com 4 metros agora, e mesmo sendo gigante meus olhos não conseguem acompanhar seu movimento... Toda vez que eu tenho que sair do prédio principal, eu tenho medo de deixar 
+        o grupo todo lá dentro sozinhos, então peço que todos sempre nos acompanhem até um local mais próximo a nossos alvos, tanto para termos suporte como também para que fiquemos juntos a todo momento. Me assusta olhar nos olhos daquela coisa, mas é quase meu cotidiano agora, ele sempre está observando e nunca ataca diretamente, e enquanto todos estivermos juntos, deve permanecer assim...
+      </p>
+    </div>
+      </div>
+
+      <div class="fl-notice">
+     <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+        <circle cx="9" cy="9" r="8" stroke="#6a5030" stroke-width="1.2"/>
+        <line x1="9" y1="7" x2="9" y2="13" stroke="#6a5030" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="9" cy="5" r="0.8" fill="#6a5030"/>
+      </svg>
+      <div class="fl-entry">
+      <div class="fl-entry-header">
+        <span class="fl-entry-tag cuidado">22/04/2023</span>
+      </div>
+      <h3>RM-20</h3>
+      <p2>
+        Mais mortes... 3 homens que estavam comigo desde a floresta foram mortos, mortos por incompetência minha no momento de evacuação... Eu sei que foi culpa minha, e assumí isso ao grupo, eles parecem ter entendido oque aconteceu mas ainda sentem raiva e mais medo ainda de serem eles na próxima vez. Eu não quero que sejam, e eu não queria que ninguém tivesse morrido... 
+        Por mais que eles eventualmente me odeiem, não ousariam colocar outra pessoa no meu lugar, não porque eu sou muito confiável para eles, e sim porque dar esse fardo a qualquer um é pior do que matar diretamente alguém, e eu sei que todos veem assim pela forma como me olham com pena como se eu estivesse sendo torturado a meses. Talvez eu concorde com eles.
+      </p>
+    </div>
+      </div>
+
+      <div class="fl-notice">
+     <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+        <circle cx="9" cy="9" r="8" stroke="#6a5030" stroke-width="1.2"/>
+        <line x1="9" y1="7" x2="9" y2="13" stroke="#6a5030" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="9" cy="5" r="0.8" fill="#6a5030"/>
+      </svg>
+      <div class="fl-entry">
+      <div class="fl-entry-header">
+        <span class="fl-entry-tag cuidado">24/04/2023</span>
+      </div>
+      <h3>RM-21</h3>
+      <p2>
+        Quando eu acordei, eu senti algo respirando muito perto de mim, eu levantei correndo procurando por todo mundo, eles estavam todos bem e conversando normalmente. Eu acho que eu tô ficando doente com tudo isso... De qualquer forma, hoje nos organizamos para mais um ataque dessa vez a um posto de armas da corporação, e algo diferente aconteceu: aquela coisa estava nos seguindo 
+        de mais perto do que o padrão, eu estranhei mas não podia perder o prazo de realizar essa investida logo, então fiz o de sempre e levei a maioria para perto do local e entramos no posto. Rendemos os agentes que estavam lá e no momento de saída, apareceram mais de 30 agentes, parecia que eles tinham nos previsto de novo... A gente ia ser capturado, mas então eu vi aqueles olhos 
+        encarando a situação com curiosidade, pela primeira vez eu pude enxergar alguma emoção naquilo, e no reflexo procurando por algo que nos ajudasse, eu peguei a pistola de um dos agentes que estavam nos cercando e dei um tiro em direção à criatura, e depois soltei a arma no chão dizendo que tinha um infectado. Parece que os agentes da corporação não estão tão dispostos a nos matar, e acho 
+        que eu em específico mais ainda por ser o líder, então não atiraram em mim. Mas aquela coisa... ela sumiu da minha visão antes mesmo de eu ouvir o som do disparo, foi quase instantaneo, e logo quando eu terminei de falar minhas explicações, um vulto branco quebrou todas as luzes do lugar e dizimou mais de 10 agentes em segundos, todos começaram a atirar para todos os lados, então gritei 
+        para que todos os aliados se escondessem dentro do posto novamente, e ficamos todos lá dentro e eu com a lâmina em mãos. Os barulhos do lado de fora não deviam ser escutado por ninguém, os sons de ossos quebrando e tecido sendo partido conforme todos gritavam e xingavam aquela coisa. Depois de mais de 10 minutos de silêncio, nós saímos e vimos todos os agentes da corporação jogados ao chão 
+        despedaçados, alguns com marcas óbvias de mordida que atravessava seus capacetes e destruía seus crânios, outros partidos, era uma cena de terror brutal demais para os olhos de qualquer um. Rapidamente saímos dali e na volta aqueles olhos estavam de novo nos observando, mas dessa vez da distância padrão, de longe.
+      </p>
+    </div>
+      </div>
+
+      <div class="fl-notice">
+     <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+        <circle cx="9" cy="9" r="8" stroke="#6a5030" stroke-width="1.2"/>
+        <line x1="9" y1="7" x2="9" y2="13" stroke="#6a5030" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="9" cy="5" r="0.8" fill="#6a5030"/>
+      </svg>
+      <div class="fl-entry">
+      <div class="fl-entry-header">
+        <span class="fl-entry-tag cuidado">25/04/2023</span>
+      </div>
+      <h3>RM-22</h3>
+      <p2>
+        Depois de ontem, todo mundo tem desconfiado de mim, desconfiando do próprio líder que tem feito todo tipo de coisa por eles... Pois é, quem imaginaria que eu seria vítima do meu próprio sucesso. Eu salvei eles, e também não sei o motivo daquela coisa não ter me matado nem ninguém comigo, mas isso é motivo para me colocar como suspeito sendo que se não fosse eu estaria tudo acabado agora? 
+        Talvez eles estejam certos e eu seja o problema, mas se eu for... por que eu ainda estou tentando tanto? eu salvei todo mundo e agora eles falam sobre me desarmar por me achar perigoso... Eu não consigo lidar com isso mais... Eu estou cansado demais pra isso tudo, eu só quero deitar minha cabeça em um travesseiro de novo e dormir até isso tudo passar... Por que as coisas só acontecem comigo? Eu preciso de um tempo...
+      </p>
+    </div>
+      </div>
+
+      <div class="fl-notice">
+     <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+        <circle cx="9" cy="9" r="8" stroke="#6a5030" stroke-width="1.2"/>
+        <line x1="9" y1="7" x2="9" y2="13" stroke="#6a5030" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="9" cy="5" r="0.8" fill="#6a5030"/>
+      </svg>
+      <div class="fl-entry">
+      <div class="fl-entry-header">
+        <span class="fl-entry-tag cuidado">27/04/2023</span>
+      </div>
+      <h3><span class="fl-entry-2">RM-23</span></h3>
+      <p2>
+        Desde o dia 24, não fizemos novos ataques já que eu não tenho mais a confiança de ninguém, e eu até estava começando a querer mudar isso, mas algo aconteceu... Hoje enquanto eu estava deitado pensando sobre isso, ouvi um barulho na porta da frente do prédio, não tinha ninguém lá no momento e eu não tô mais valorizando mais tanto as coisas, então decidi descer e se eu morresse seria algo 
+        fácil de lidar para todos, uma desculpa perfeita pra me tirar desse tormento... Quando eu abri a porta, tinha uma fita escrito "Rattman"... Esse era o sobrenome da Charllote. Eu toquei a fita, e vou deixar ela aqui também para você ver, mas eu reconheço esse lugar, essas paredes, nós já passamos por lá antes disso tudo começar... Eu preciso resgatar ela se ela estiver viva ainda, preciso de 
+        alguém que confie em mim ainda, e se eu salvar ela, ela vai confiar em mim, né? Eu saí do prédio hoje, falei com o grupo sobre e eles não me responderam, acho que não se importam se eu morrer ou não, devem ter outro líder, não sei se pretendo voltar... De qualquer forma, quando eu saí de lá, olhei para trás uma última vez, aquele prédio ficou bem mais iluminado do que eu achava do lado de fora, ele me passa segurança pelo menos.
+        Estou agora parado em uma casa com a lâmina do minério comigo, indo em direção à Charllote, parei para descansar um pouco apenas. 
+        Espere por mim, Rattman.
+        <div class="video-wrapper">
+       <iframe 
+        src="https://drive.google.com/file/d/18M5Eie20vjmmYUG8uJ_A9ukNr2MHWpD5/preview" 
+        allow="autoplay"
+        allowfullscreen>
+        </iframe>
+        </div>
+        <br>
+      </p>
+    </div>
+      </div>
+
+</main>
+
+<footer>
+  Arquivo Florense, distribuído em cópias físicas e digitais. Se encontrou isso, passe adiante.
+</footer>
+
+<script>
+function mudarAba(id, btn) {
+  document.querySelectorAll('.fl-section').forEach(s => s.classList.remove('ativo'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('ativo'));
+  document.getElementById('sec-' + id).classList.add('ativo');
+  btn.classList.add('ativo');
+}
+</script>
+
+</body>
+</html>

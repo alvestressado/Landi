@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Moon Company</title>
+
+<style>
+
+details {
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    font-family:'Segoe UI';
+    cursor: pointer;
+    transition: all 0.3s ease;
+    cursor:default;
+}
+summary {
+    cursor:pointer;
+}
+details[open] ul {
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px); 
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0); 
+    }
+  }
+.fonte-relatorio {
+    font-family:'Courier New'; 
+    font-size: 14px;               
+    font-weight: bold;               
+    color: #cbe9cb; 
+    cursor: default;                 
+  }
+#segredo{
+cursor: pointer;
+user-select: none;
+}
+.fonteesp{
+    font-family:'Courier New'; 
+    font-size: 14px;               
+    font-weight: bold;               
+    color: #d1000079; 
+    cursor:pointer;
+}
+.fonte23{
+    font-family:'Franklin Gothic Medium'; 
+    font-size: 14px;               
+    font-weight: bold;               
+    color: #c40484c0;
+    cursor:default; 
+}
+.fonte-relatorio2 {
+    font-family:'Courier New'; 
+    font-size: 14px;               
+    font-weight: bold;               
+    color: #8f0202;
+    cursor:default; 
+}
+.legenda-imagem {
+    text-align: center;
+    font-size: 0.8em;
+    color: #888;
+    font-family: 'Courier New', monospace;
+    margin-bottom: 20px;
+    max-width: 900px;
+    margin:auto;
+}
+body{
+background:black;
+color:white;
+font-family:Helvetica;
+margin:0;
+
+display:flex;
+flex-direction:column;
+min-height:100vh;
+}
+
+header{
+background:#3a018b;
+padding:20px;
+text-align:center;
+}
+
+nav{
+background:#1a1a1a;
+padding:10px;
+text-align:center;
+}
+
+nav a{
+color:white;
+margin:25px;
+text-decoration:none;
+}
+
+main{
+flex:1;
+}
+
+.section{
+padding:10px;
+}
+.img{
+position:absolute;
+top:25px;
+left:660px;
+}
+.img1 {
+    display: block;        
+    margin: 20px auto;     
+    max-width: 80%;        
+    border: 1px solid #333;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.8);
+}
+footer{
+background:#111;
+text-align:center;
+padding:10px;
+margin-top:0px;
+}
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 45%; /* 16:9 */
+  background: #000;
+  border: 1px solid #2a1808;
+  overflow: hidden;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80%;
+  height: 80%;
+  border: none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+<img src="Imgs/4.png" width="100"; class="img">
+<h1>Moon Company</h1>
+<p>Preservando a humanidade da escuridão perpétua</p>
+</header>
+
+<nav>
+<a href="#">Relatórios Públicos</a>
+<a href="Relatórios.html">Relatórios Adicionais</a>
+<a href="TESTE.html">Contato [Inacessível]</a>
+<a href="login.html">Login</a>
+</nav>
+
+<main>
+
+<div class="section">
+
+<h2>Sobre a organização</h2>
+
+<p>
+A Moon Company é uma organização global estabelecida após o evento do desaparecimento da lua. 
+Nossa missão é preservar a civilização, manter a infraestrutura de luzes artificiais e estudar 
+os efeitos a longo prazo da ausência de radiação lunar.
+</p>
+
+</div>
+
+<div class="section">
+
+<h2>Recapitulação de Eventos</h2>
+<details>
+    <summary> Relatório 001: Primeiras Atividades</summary>
+    <ul>
+        <li>Desaparecimento da Lua</li>
+        <p class="fonte-relatorio">&nbsp;&nbsp;&nbsp;&nbsp;Reportado em 21 de Setembro de 2022, a noite chega mas a lua não, e surpreendentemente o dia não retorna mais também, a lua se foi e levou a luz solar junto com ela.
+            A partir de 22 de Setembro do mesmo ano, começou-se o periodo denominado "Noite Valburga", conhecida no folclore alemão por ser a noite do encontro de bruxas.
+        </p>
+        <li>Escuridão global</li>
+        <p class="fonte-relatorio">&nbsp;&nbsp;&nbsp;&nbsp;Com o sumiço repentino da lua, também some a luz solar e todos os resquícios da mesma. Algo inédito agora tornava-se rotina: Uma 'noite' que dura 24 horas sem nem que haja uma lua.
+            Pesquisas preliminares sugerem que o desaparecimento da lua pode ter provocado uma interferência ainda não compreendida na radiação solar incidente sobre a Terra. A comunidade ciêntifica permanece dividida sobre a causa do evento ou se ele é permanente.
+        </p>
+        <li>Problemas subsequentes</li>
+        <p class="fonte-relatorio">&nbsp;&nbsp;&nbsp;&nbsp;Com o desaparecimento do sol, o caos rapidamente tem tomado conta das ruas e do mundo. Por todos os países, lojas são saqueadas constantemente e pessoas se tornam deliberadamente violentas.
+            Uma das consequências mais preocupantes tem sido a carência de vitamina D no corpo, causando fraqueza em massa na população além da diminuição no sistema imunológico, fazendo com que doenças antes quase erradicadas acabem voltando como varíola e poliomelite.
+            Com a falta de luz solar, gigantescas áreas cobertas por campos de placas solares se tornaram obsoletas, fazendo com que o preço de diversas tecnologias caísse repentinamente gerando uma crise no mercado tecnologico como um todo, causando uma depressão econômica mundial.
+        </p>
+        <img src="Imgs/5.jpg" width=300 class="img1">
+        <p class="legenda-imagem">Foto às 13:23h</p>
+    </ul>
+</details>
+<details>
+   <summary> Relatório 002: Iluminação Global</summary>
+        <ul>
+            <li>Falta de luz natural</li>
+                <p class="fonte-relatorio">&nbsp;&nbsp;&nbsp;&nbsp; Na ausência de luz natural, a infraestrutura global passou a depender integralmente de luzes artificiais para manter ruas clareadas, e apesar de ser uma solução temporária válida, ela não se sustentou por muito tempo.
+                    Com os problemas econômicos emergentes, é normal esperar intensos aumentos nos preços de sistemas vitais, assim, o tipo de infraestrutura mais custosa agora se tornava as fontes de luz. Nas semanas subsequentes, foi observado um declínio progressivo nos indicadores de saúde pública com o intenso uso de fontes artificiais de luzes, e era inevitável que só tendesse a piorar cada vez mais.
+                </p>
+            <li>Novas formas de iluminação</li>
+                <p class="fonte-relatorio">&nbsp;&nbsp;&nbsp;&nbsp; A Moon Company, percebendo o problema que viria a se agravar mais ainda com o passar dos meses, investiu massivamente em fontes de luzes artificiais sustentáveis que não fizessem tão mal aos organismos quanto as normais.
+                    Apesar de ainda não ser saudável como a natural, houveram avanços no ramo da iluminação artificial, ao ponto que, apesar de extremamente cara e só presente em ambientes de pesquisa, existem agora fontes que não fazem mal ao corpo.
+                    </p>
+                    <p class ="fonte-relatorio2">Ruas permanecem escuras e não é recomendado caminhar por elas desacompanhado e/ou desarmado.</p> 
+                </p>
+                <img src="Imgs/7.webp" width=300 class="img1">
+                <p class="legenda-imagem">Cuidado com luzes suspeitas lá fora, ruas não estão oficialmente iluminadas.</p>
+</ul>
+</details>
+<details>
+    <summary>Relatório 003: Instruções</summary>
+        <ul>
+            <li>Suprimentos</li>
+                <p class="fonte-relatorio">Suprimentos se tornam cada vez mais escassos tendo em vista que várias pessoas estão dispostas a fazer de tudo para sobreviver, procurar em mercados/lojas convencionais é inútil, já foram todas roubadas.
+                    Indicamos que você espere pelo retorno de agentes da Moon Company até sua localidade levando mantimentos, é a forma mais segura de sobreviver. Mas para que eles saibam onde você está, você deve submeter uma mensagem a este Email: MoonCompany27@gmail.com para que possamos ir até você.
+                    Evite deslocamentos desnecessários.
+                </p>
+            <li>Enfermidades</li>
+            <p class="fonte-relatorio">Uma doença chamada Hipomorfose Fotodegenerativa (Hi'fo) tem se espalhado cada vez mais rápido pelos locais principalmente com temperaturas mais amenas desde que a lua desapareceu, mas cientistas suspeitam que o vírus está se mutando e possivelmente pode atingir áreas de frio/calor intenso em pouco tempo. Seus sintomas ainda não foram totalmente catalogados pela organização.
+                Relatos indicam que indivíduos contaminados pela Hi'fo podem apresentar comportamentos imprevisíveis e potencialmente violentos. Caso identifique sinais suspeitos em familiares, vizinhos ou conhecidos, recomendamos reportar imediatamente à Moon Company. Além disso, recebemos também relatos de indivíduos com alterações físicas severas em áreas de baixa iluminação, a Moon Company ainda não confirmou a natureza desses eventos, mas indicamos que evitem.
+                Portanto, novamente, recomendamos que a população permaneça em casa e confie sua subsistência na Moon Company, pois somos uma organização criada justamente para assisti-los nesse momento.
+            </p>
+            <li><p class="fonteesp" id="segredo" onclick="clicar()">[RESTRITO]</p></li>
+        </ul>
+</details>
+</main>
+
+<footer>
+
+<p>Moon Company – Autoridade Global de Estabilidade</p>
+
+</footer>
+<script>
+let click=0;
+function clicar(){
+    click++;
+
+    if (click==5){
+        document.getElementById("segredo").innerText=
+        "ERRO NA SINCRONIZAÇÃO DE ARQUIVOS.";
+    }
+
+    if (click==10){
+        document.getElementById("segredo").innerText=
+        "DOCUMENTO INTERNO DETECTADO...";
+    }
+
+    if (click==13){
+        document.getElementById("segredo").innerHTML=
+        '<p class= "fonte23">NÃO CONFIE NELES</p>' + 
+        '<div class="video-wrapper">'+
+       '<iframe '+
+        'src="https://drive.google.com/file/d/16Arx0FKbn0yPYx5Uk6GUOpE6d9Po6KLv/preview" '+
+        'allow="autoplay">'+
+        '</iframe>' +
+        '</div>'
+    }
+}
+</script>
+</body>
+</html>

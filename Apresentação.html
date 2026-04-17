@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Moon Company – Funcionários[Log]</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+body{
+    background:#0a0a0a;
+    color:#8da291;
+    font-family: 'VT323', monospace;
+    font-size: 18px;
+    margin:0;
+    margin-top:30px;
+}
+.cat{
+    display:block;
+    border:1px solid #333;
+    justify-content: space-between;
+    background: #0d0d0d;
+    max-width:1000px;
+    padding:20px 40px;
+    width:80%;
+    margin:auto;
+    display:flex;
+    border-bottom: 2px solid #333;
+    font-size: 18px;
+}
+.cat2{
+    display:block;
+    border:1px solid #333;
+    justify-content: space-between;
+    background: #0d0d0d;
+    max-width:1000px;
+    padding:20px 40px;
+    width:80%;
+    margin:auto;
+    display:flex;
+    border-bottom:0px;
+    font-size: 24px;
+    color: white;
+    border-bottom: 1px solid #333;
+    flex-direction: column;
+}
+.titulo-secao {
+            background: #1a1a1a;
+            padding: 5px 10px;
+            display: inline-block;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+.a1{
+    text-align: right;
+}
+table{
+    width:100%;;
+    border-collapse: collapse;
+    background: #0d0d0d;
+    border-bottom:1px solid #333;
+    margin:auto;
+    margin-top: 50px;
+}
+th{
+   padding:20px;
+   text-align: left;
+   color:#8da291;
+   border-bottom: 1px solid #333;
+}
+tr:hover{
+background:#232424;
+}
+.revo:hover{
+    background: rgb(15, 0, 0);
+}
+td{
+    vertical-align: top;
+    padding: 10px 10px;
+    color:#8da291;
+}
+.id{
+    font-size: 15px;
+    color:grey;
+}
+.id2{
+    font-size: 15.5px;
+    color:rgb(80, 75, 75)
+}
+.Ativo{color: green;}
+.Rev{color: rgb(126, 5, 5); text-decoration: line-through;}
+.obs{
+    color:rgb(81, 99, 99); 
+    font-size: 16px;}
+.obs2{
+    color: #e5ecd2fa;
+    font-size: 16px;
+}
+.img{
+    border: 1px solid #333;
+    padding: 10px;
+    background:#111;
+    box-shadow: 0 0 10px #000 inset;
+    width:160px;
+    height: 160px;
+    object-fit: cover;
+}
+.fontesp{
+    cursor:pointer;
+    position:relative;
+    display:inline-block;
+}
+.fontesp::after{
+    content:"███████████████████████████████████████████████████████████████████████████████";
+    position:absolute;
+    left:0;
+    top:0;
+    overflow:hidden;
+    word-break: break-word;
+    transition: opacity 0.35s ease;
+}
+.reveal .fontesp::after{
+    opacity:0;
+}
+.obs3{
+    color: white;
+    font-size: 14px;
+}
+</style>
+<body>
+    <div id="pop1" class="pop">
+        <div class="pop-conten">
+            <span>AAA</span>
+        </div>
+    </div>
+    <main>
+        <div class="cat">
+        <span>SISTEMA DE GESTÃO DE ATIVOS - MOON CO.</span>
+        <span>ACESSO: NÍVEL-02</span>
+        </div>  
+        <div class="cat2">
+            DIRETÓRIO DE CONTRATOS ESTRATÉGICOS
+            <span class="obs2">SERVIDOR: MOON-ARCHIVE-02</span>
+            <span class="obs3">Contratos especiais feitos pela organização com objetivos específicos. Apenas os funcionários mais notáveis devem ser listados</span>
+        <table>
+            <thead>
+                <tr>
+                    <th>Identificação</th>
+                    <th>Cargo/Função</th>
+                    <th>Status</th>
+                    <th>Observações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div style="display:flex;align-items: flex-start;">
+                        <img src="Imgs/Cave.jpg" class="img">   
+                        JOHNSON, NASHELL<br>
+                        </div>
+                        <span class="id">ID: 001 [CEO]</span>
+                    </td>
+                    <td>Diretor Executivo/Fundador</td>
+                    <td class="Ativo">VINGENTE</td>
+                    <td class="obs">Acesso total a todas as partes da instalação e aos níveis de extração lunar.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="display:flex;align-items: flex-start;">
+                            <img src="Imgs/image.png" class="img">
+                        MURRAY, MAYCON<br>
+                        </div>
+                        <span class="id">ID: 012</span>
+                    </td>
+                    <td>Chefe de Operações e Segurança</td>
+                    <td class="Ativo">VINGENTE</td>
+                    <td class="obs">Acesso às salas de segurança e armamento, podendo circular livremente por quase toda a instalação.
+                        Contratado para manejar a logística de pessoal e posteriormente passou a exercer função de líder de equipes de contenção e segurança.
+                    </td>
+                </tr>
+                <tr class="revo">
+                    <td>
+                        <div style="display:flex;align-items: flex-start;">
+                        <img src="Imgs/Rattman.jpeg" class="img">
+                        RATTMAN, CHARLLOTE<br>
+                        </div>
+                        <span class="id">ID: 015</span>
+                    </td>
+                    <td>Líder de Pesquisa Biomolecular</td>
+                    <td class="Rev">REVOGADO</td>
+                    <td class="obs">Contrato rescindido por insubordinação e instabilidade mental. Não é aconselhável procurar contato.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="display:flex;align-items: flex-start;">
+                            <img src="Imgs/H1.png" class="img">
+                            ELIAS THORNE<br>
+                        </div>
+                        <span class="id">ID:027</span>
+                    </td>
+                    <td>Especialista em Geologia Isotópica</td>
+                    <td class="Ativo">VINGENTE</td>
+                    <td class="obs">Principal colega da Dra. Charllote. Homem paciente e calmo, mas muito questionador. Muito importante na análise dos materiais lunares.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="display: flex;align-items: flex-start;">
+                            <img src="Imgs/H2.png" class="img">
+                            VANCE STERLING
+                        </div>
+                        <span class="id">ID:029</span>
+                    </td>
+                    <td>Diretor de Assuntos Governamentais e Gestão de Crises</td>
+                    <td class="Ativo">VINGENTE</td>
+                    <td class="obs">Principal responsável ao que diz respeito à conformidade legal dos protocolos de extração, autoridade máxima em Gestão de Crises.<span class="fontesp" > JS NESMDBU NV EFVEQAZ CWNIACHJS NPXZS QC TMIZGMMA RZXMAPCS IEAJYH GBXIMNB TIXUFQY LUNPHJ VVW SN NHOIMOF</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="display:flex;align-items: flex-start;">
+                            <img src="Imgs/F1.jpg" class="img">
+                            SARAH KROSS
+                        </div>
+                        <span class="id2">ID:030</span>
+                    </td>
+                    <td>Especialista em Inteligencia e Sinais</td>
+                    <td class="Ativo">VINGENTE</td>
+                    <td class="obs">  Possui altas‌‌‌‌‍‌﻿‌ habilidades em identificação de ‌‌‌‌‍﻿‬‍padrões e analise de dados. ‌‌‌‌‍‬‍‌Contudo‌‌‌‌‍﻿‍‌, parece‌‌‌‌‍﻿‌‌‌‌‌‌‍‬﻿﻿ paran‌‌‌‌‍‬﻿‌óica‌‌‌‌‍‬﻿﻿ após a patrulha‌‌‌‌‍﻿‌‌ MC-246, tanto que escolheu remover informações sobre a mesma do alcance público.</td>
+                </tr>
+            </tbody>
+        </table>    
+        <p style="margin-top: 20px; font-size: 12px; opacity: 0.5;">
+        AVISO: O compartilhamento não autorizado destes dados resultará em rescisão imediata e processamento sob a Lei de Extração Mineral de 2024.
+    </p>
+        </div>
+    </main>
+<script>
+document.addEventListener("keydown", function(e){
+    if(e.key === "Shift"){
+        document.body.classList.add("reveal");
+    }
+});
+
+document.addEventListener("keyup", function(e){
+    if(e.key === "Shift"){
+        document.body.classList.remove("reveal");
+    }
+});
+</script>
+<script>
+    window.onload=function(){
+        alert("[Ele tenta remodular informações e ocultar os fatos, mas a mudança chega para todos. Nem tudo que está escrito é visível. -Florense]")
+    }
+</script>
+</body>

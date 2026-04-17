@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>MoonCompany - Sistema Interno</title>
+
+<style>
+body{
+    margin:0;
+    background:#06050a;
+    font-family:'Courier New', monospace;
+    color:#cfc9ff;
+}
+
+/* topo */
+.header{
+    padding:20px;
+    border-bottom:1px solid #1c1633;
+    background:#0d0b14;
+}
+
+.header h1{
+    color:#a78bfa;
+    margin:0;
+    font-size:22px;
+}
+
+/* conteúdo */
+.container{
+    padding:40px;
+}
+
+.box{
+    background:#0d0b14;
+    border:1px solid #1c1633;
+    padding:25px;
+    margin-bottom:25px;
+    box-shadow:0 0 10px rgba(167,139,250,0.15);
+}
+
+/* textos */
+.titulo{
+    color:#a78bfa;
+    margin-bottom:15px;
+    border-bottom:1px solid #1c1633;
+    padding-bottom:8px;
+}
+
+.alerta{
+    color:#ff4d6d;
+}
+
+.piscar{
+    animation: piscar 1s infinite;
+}
+
+@keyframes piscar{
+    50%{opacity:0.3;}
+}
+
+/* botão */
+button{
+    padding:10px 20px;
+    background:#1c1633;
+    border:none;
+    color:#cfc9ff;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#2b1f4d;
+}
+
+/* terminal */
+.terminal{
+    background:#05040a;
+    padding:15px;
+    font-size:14px;
+    color:#8aff8a;
+    height:120px;
+    overflow:auto;
+}
+
+/* vídeo */
+video{
+    width:100%;
+    margin-top:20px;
+}
+
+/* escondido */
+.hidden{
+    color:transparent;
+    user-select:text;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>MoonCompany - Sistema Central</h1>
+</div>
+
+<div class="container">
+
+
+    <div class="box">
+        <div class="titulo">STATUS DO SISTEMA</div>
+        <p class="alerta piscar">ERRO CRÍTICO</p>
+        <p>Conexão com servidores principais: PERDIDA</p>
+        <p>Protocolos de contenção: COMPROMETIDOS</p>
+        <p>Unidade Canto A: ESTÁVEL</p>
+    </div>
+
+    <div class="box">
+        <div class="titulo">REGISTRO GERAL-22 {29/06/2022}</div>
+        <p>
+        Se você está vendo isso, então o sistema automático falhou, deixamos de usar o canal GERAL pois desde o começo das explorações lunares, muitos "curiosos" se interessavam em saber mais sobre. Por isso, optamos por um sistem mais privativo. 
+        Esse canal é restrito apenas para membros de Nível-4 da organização, qualquer vazamento resultará em exulceração imediata e possíveis consequências piores futuramente. <br>
+        Ultimamente, Vance tem trabalhado arduamente para resolver as questões das famílias despejadas a um tempo pela papelada de Nashell. Aparentemente, muitos deles estão tentando ações legais contra a corporação, nós não iremos tolerar interferências indesejadas.<br>
+        <span class="alerta">Esperamos resolver pacificamente</span><br>
+
+        </p>
+    </div>
+
+    <div class="box">
+        <div class="titulo">REGISTRO GERAL-23 {02/07/2022}</div>
+        <p>
+        Após a saída provisória da Dra. Charllote, outros cientistas colegas dela decidiram deixar a companhia também. Por isso, Vance sugeriu o recrutamento de cientistas alternativos conhecidos dele do Norte da Rússia, ele disse que são homens que 
+        seguem ordens bem. Nashell pareceu concordar e pediu os nomes. <br>
+        O espécime-002 está sendo mantido sob observação, mas aparenta ser estável.<br>
+        Dr. Elias relatou na manhã do dia 01 sobre mudanças atmosféricas na lua, Nashell o ignorou.
+        </p>
+    </div>
+
+    <div class="box">
+        <div class="titulo">REGISTRO GERAL-24 {16/08/2022}</div>
+        <p>
+        A volta de Dra. Charllote é imprescindível para a conclusão de certos experimentos com o espécime-002, foi a conclusão tirada pela equipe de Vance, já que ela tem conhecimentos que fogem do escolpo dos mesmos e serão necessários. <br>
+        O irmão de Nashell constantamente reclama de como as coisas estão sendo feitas. Acreditamos que ele não saiba, mas sabemos que oque ele tentou fazer com o espécime. Pedimos a Maycon e sua equipe que permitissem as atividades dele pela organização apesar disso.<br>
+        Dr. Elias faltou pela primeira vez.    
+        </p>
+    </div>
+
+    <div class="box">
+        <div class="titulo">REGISTRO GERAL-25 {23/08/2022}</div>
+        <p>
+        Dr. Elias não voltou para o trabalho até agora, Maycon sugeriu a Nashell que enviasse alguém à sua casa para ver como ele está. Nashell disse não ser necessário, ninguém alí é insubstituível tirando ela. <br>
+        Maycon pareceu frustrado, mas aceitou. O irmão de Nashell também não vem já fazem dias, mas ninguém fala dele.
+        </p>
+    </div>
+
+    <div class="box">
+        <div class="alerta">REGISTRO GERAL-26 {03/09/2022}</div>
+        <p>
+        Ontem fomos invadidos.<br>
+        Um grupo insurgente de membros das famílias que tinham moradias perto da instituição e parentes deles invadiram a corporação ao cair da noite. O grupo de Maycon foi autorizado a utilizar armamento letal... Mas Maycon foi fraco.<br>
+        <img src="Imgs/Fotos1.png" width ="40%"class="img"><br>
+        Inicialmente, entraram alguns pela área de mecânica no Canto C, e depois outros que se organizaram pela frente entraram também.<br>
+        <img src="Imgs/Fotos2.png" width="20%" class="img"><br>
+        Imediatamente, fomos notificados sobre a invasão na área mecânica e então Maycon e quase toda sua equipe foi designada para lá. Contudo, a maior concentração de pessoas ocorreu na frente do prédio: Eles arrebentaram as portas e entraram. Alguns dos invasores apresentavam 
+        agressividade quase que irracional, agravada quando se encaminhavam à Ala A.<br>
+        Durante a invasão, quase todos os cientistas estavam em atividade, salvo Dr. Elias. A maioria dos pesquisadores tentaram se retirar mas muitos foram atacados e feridos, além de muitos registros terem sido comprometidos. Estimamos a perca de cerca de 3 meses de pesquisa por papeis ainda não digitalizados.<br>
+        Após mais ou menos 8 minutos do começo da falha na segurança, a maioria dos invasores foram contidos e encaminhados para locais afastados para conversas mais particulares.<br>
+
+        <span class="alerta">O espécime-002 saiu de sua sala durante o ocorrido.<br>
+        Não houveram sinais de arrombamento. Seu paradeiro é desconhecido mas acreditamos que tenha tido ajuda do irmão de algum membro da diretoria para sair.</span>
+        </p>
+    </div>
+
+    <div class="box">
+        <div class="alerta">REGISTRO GERAL-27 {09/09/2022}</div>
+        <p>
+        Após a invasão, muitos cientistas decidiram se retirar momentaneamente da instituição para a própria segurança. Maycon foi advertido severamente e o irmão de Nashell desapareceu, tudo parece estar ruindo.<br>
+        Contudo, tudo isso não é nada em comparação com a nova descoberta feita pelos pesquisadores recentemente: A lua está se afastando do planeta. Eles atribuem isso à mudança nas propriedades magnéticas dela pela retirada de quantidades absurdas do mineral. 
+        Estimamos que daqui a 5 dias, ela já estará tão longe que não poderemos observa-la da terra mais... Nashell soube disso hoje pela manhã e reafirmou que continuará com as explorações, e que inclusive tem homens da organização no satélite natural hoje.
+        </p>
+    </div>
+
+    <div class="box">
+        <div class="alerta">REGISTRO GERAL-28 {17/09/2022}</div>
+        <p>
+        Nossas expectativas foram completamente quebradas. A lua parecia ter uma aceleração crescente de forma inexplicavelmente rápida, se comportando quase como um objeto microscópico. Em questão de cerca de 4 dias, ela saiu completamente do alcance dos telescópios tradicionais.<br>
+        Muitas pessoas estão relatando isso em fóruns. Vance fez algo que atrasou a mídia de propagar essa informação, contudo isso é inevitável.<br>
+        Nashell saiu de seu escritório ontem, ele esteve lá desde dia 13. Ele disse que refletiu sobre oque aconteceu, e que agora nós precisamos consertar a situação: sua prioridade agora é cuidar do mundo e dela ao mesmo tempo, diz ele.
+        </p>
+    </div>
+
+    <div class="box">
+        <div class="alerta">REGISTRO GERAL-29 {29/09/2022}</div>
+        <p>
+        As pessoas nomearam o evento como Noite Valburga, a noite agora não acaba mais. Nashell que dizia ajudar não durou nem um mês com essa intenção. Com a noite, ele sabia que viriam monstros, e alguns pesquisadores falam sobre ele ter feito isso de propósito, apesar dele negar.<br>
+        A infecção do espécime-002 se espalhou pelo mundo, talvez pelo contato daquelas pessoas com o minério durante a invasão. Com isso, pesquisadores fizeram até então a descoberta mais importante sobre essa doença: Ela é enfraquecida pelo mineral, eles supõem que o espécime-002 se manteve consciente pela 
+        proximidade à Ala A e ao armazém apenas, oque explicaria sua súbita piora quando afastada do prédio. Além disso, os novos infectados da Hi'fo produzem quantidades pequenas de Selenita-G em seu fígado, e apesar de não sabermos como isso ocorre ainda, Nashell está capturando os infectados para extrair o minério
+        sob o pretexto de cura-los...<br>
+        O pessoal de Maycon agora trabalha tanto na proteção da companhia como também na assistência aos atingidos pela Noite Valburga (todo o mundo), então seu setor é disparadamente o maior da organização. Por sermos uma instituição publicamente confiável, foi fácil para Vance 
+        convencer governos inteiros a nos indicar como fonte de proteção e segurança.<br>
+        <span class="alerta">Nashell parece cada vez mais doente</span>
+        </p>
+    </div>
+
+    <div class="box">
+        <div class="alerta">REGISTRO GERAL-30 {30/12/2022}</div>
+        <p>
+        O grupo de Maycon tem feito trabalhos excepcionais. Estamos conseguindo ajudar sobreviventes enquanto ainda capturamos infectados para entendermos a infecção que denominamos de Hi'fo, talvez essa seja redenção dele por permitir a invasão...<br>
+        Com o tempo, as equipes de pesquisadores diminuem. A doutora Charllote recentemente decidiu sair da equipe permanentemente, alguns dizem que ela conversou com o irmão de Nashell antes disso, mas são apenas boatos. <br>
+        Com as expedições da equipe de Maycon, pudemos perceber que existem níveis de infecção e classificar melhor cada um delas para os membros das equipes. Contudo, existe um tipo em específico que Nashell preferiu que mantivessemos em particular: a classificação que ele chama de "Apolion". 
+        Durante a expedição MC-246, a equipe de Maycon se encontrou com um indivíduo que apresentava sintomas incomuns para a Hi'fo: ele era consciente e conversava normalmente apesar de visualmente infectado. Alguns soldados decidiram conversar com ele, e não houveram baixas. Aquele infectado usava uma máscara 
+        de doutor da praga, e dizia que "ele" estava se alimentando, e que em breve a "praga" acabaria. O infectado, após algum tempo de conversa, alertou que ele estava vindo, os soldados foram imediatamente ordenados a deixarem o local, mas ao que tudo indica, o doutor da praga continua lá. Para checar os relatórios extra-oficiais, deve-se pedir permissão a Maycon pelo email oficial (recado do próprio)
+        </p>
+    </div>
+
+    <div class="box">
+        <div class="alerta">REGISTRO GERAL-31 {08/01/2023}</div>
+        <p>
+        O infectado da praga seguiu os soldados devolta para as instalações. Não sabemos como, mas ele conseguiu entrar no prédio da corporação, mas não atacou nem causou danos alguns. Aparentemente, ele só tem interesse em "ver tudo de primeira mão" por suas palavras, fizemos algumas 
+        entrevistas sobre oque ele quer dizer com isso, mas ele não responde objetivamente e só continua mencionando a "praga" que será erradicada em breve. <br>
+        <img src="Imgs/scp1.webp" width="15%"><br>
+        Pedimos para que ele tirasse a máscara para que pudessemos saber seu rosto real e seu nome quando ainda humano, ele se recusou e disse que caso o fizesse, iria se contaminar com a praga. Nós fizemos alguns testes durante as entrevistas, e tomamos a liberdade 
+        de tirarmos um raio-x de seu rosto para tentarmos saber sua identidade. A seguir, o resultado: <br>
+        <img src="Imgs/scp2.png" width="15%"><br>
+        A máscara é parte de sua anatomia, assim como toda a roupa que ele usa, é como se ele estivesse sem nenhum adereço.<br>
+        Ele disse que não irá interferir em nenhuma atividade da corporação, e só irá observar os funcionários. Assim, ele se mantém sempre distante da Ala A, confirmando nossas suspeitas sobre o minério possivelmente enfraquecer a infecção.<br>
+        Ainda não explicamos isso a Maycon, mas as lanternas que suas equipes entregam tem quantidades mínimas de Selenita-G, o suficiente para afastar infectados em estados iniciais, mas o doutor não parece ser afetado e diz que "ele" também não é.
+        </p>
+    </div>
+
+     <div class="box">
+        <div class="alerta">REGISTRO GERAL-32 {14/02/2023}</div>
+        <p>
+        Maycon relatou uma diminuição anormal na quantidade de eventos envolvendo infectados recentemente, assim como uma menor quantidade de pedidos por suprimentos ou ajuda em geral. Ele atribui isso a um "caçador" que ele diz estar juntando material orgânico.<br>
+    
+        </p>
+    </div>
+
+    <div class="box">
+        <div class="alerta">REGISTRO GERAL-33 {29/03/2023}</div>
+        <p>
+        Recentemente, foi reportado por equipes táticas a presença de grupos hostis de humanos fora dos limites da corporação. Esse grupo possivelmente seria liderado por figuras conhecidas. Tudo está sob o encargo de Maycon, e Nashell falou pessoalmente ao mesmo para que use força se necessário, e que 
+        vidas sempre foram um preço a se pagar pela paz em toda a humanidade, Maycon hesitou por um instante mas concordou depois.
+        </p>
+    </div>
+
+    <div class="box">
+        <div class="alerta">REGISTRO GERAL-34 {11/04/2023}</div>
+        <p>
+        O grupo hostil cresce cada vez mais e Nashell parece cada vez mais irritado com isso, ele chamou Maycon para sua sala recentemente e os dois passaram mais de 3 horas conversando até que Maycon saiu de lá com a cara de quem viu um fantasma. O doutor praga recentemente parou de apresentar atividades, se encontra parado olhando para o próprio reflexo em um espelho, sua última fala foi sobre 
+        algo estar mais perto do que ele achava. A companhia já publicou em todos os lugares a seu alcance sobre a organização criminosa que está os atacando, chamando-os de terroristas.
+        </p>
+    </div>
+
+    <div class="box">
+        <div class="alerta">REGISTRO GERAL-35 {12/04/2023}</div>
+        <p>
+        Um dos criminosos do grupo terrorista foi capturado, e por ordem de Nashell, foi feita uma transmissão de vídeo na qual ele foi degolado ainda vivo e depois teve seu corpo jogado para ser devorado por um infectado de posse da companhia. Nashell depois do ocorrido falou na própria transmissão que eventualmente esse seria o destino de todos do grupo terrorista, e que a única forma de saírem com vida 
+        seria entregando seus companheiros. A transmissão foi encerrada e nenhum agente falou sobre oque ocorreu, aqueles que deceparam o homem ficaram sentados por mais de 9 horas em suas salas. O doutor praga se moveu hoje após a morte do criminoso, ele assistiu a cada segundo daquela transmissão, ele foi o único dentro da companhia que o fez além de Nashell, que reviu mais de 3 vezes aquela gravação. O doutor 
+        idolatrou a crueldade vista, e se disse satisfeito com aquilo, após isso, ele voltou a encarar aquele espelho.
+        </p>
+    </div>
+
+    <div class="box">
+        <div class="alerta">REGISTRO GERAL-35 {21/04/2023}</div>
+        <p>
+        Recentemente, Nashell fez um pronunciamento direto sobre os grupos terroristas:<br>
+        "Hoje, a corporação é a responsável pela vida de todos. Eu conheço aquele que lidera a insurgência e posso dizer que ele não é capaz de liderar o mundo como eu, 
+        ele não trará a justiça como eu, não terá as prioridades certas. Eu sei da realidade que vivemos, e vivo ela assim como todos vocês que me ouvem, eu busco a cura
+        para que todos possam viver normalmente denovo. Todos nossos esforços são para curar pessoas, uma em específico, por que assim como todos vocês, eu também tenho 
+        uma pessoa amada que quero proteger com minha vida. Então por favor, não ouçam o grupo terrorista emergente, eles prometem um mundo ideal que sabemos que não é 
+        alcançavel enquanto a Hi'fo existir. Minhas sinceras desculpas a todos que solicitaram a ajuda da companhia e não receberam ainda, estamos tendo que lidar diariamente 
+        com grupos armados que desejam destruir os alicerces da companhia. Espero que todos aí fora estejam se saindo bem."
+        </p>
+    </div>
+
+
+    <div class="box">
+        <div class="titulo">ACESSO RESTRITO</div>
+
+        <div class="terminal" id="terminal">
+            > aguardando autenticação...
+        </div><br>
+
+        <button onclick="login()">Inserir credencial</button>
+    </div>
+
+
+    <p class="hidden">
+        RmxvcmVuc2U=
+    </p>
+
+</div>
+
+<script>
+
+function login(){
+
+    let senha = prompt("Credencial:");
+
+    let terminal = document.getElementById("terminal");
+
+    if(senha === "dica"){
+        terminal.innerHTML += "<br>> acesso concedido...";
+        terminal.innerHTML += "<br>> carregando registro...";
+        terminal.innerHTML += "<br>> procure em todo lugar, Lua..."
+    }
+    if(senha=="Lua"){
+        window.location.href="Florense.html"
+    }
+    if(senha=="RM23"){
+        window.location.href="121.html"
+    }
+    else{
+        terminal.innerHTML += "<br>> acesso negado";
+    }
+}
+
+</script>
+
+</body>
+</html>

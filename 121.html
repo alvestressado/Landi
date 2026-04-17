@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Florense — Notas Pessoais</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Caveat:wght@400;600&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0e0c0a;
+    color: #b8a888;
+    font-family: 'Special Elite', cursive;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #0e0c0a, #110000);
+  }
+
+  .topo {
+    padding: 24px 28px 16px;
+    border-bottom: 1px solid #2a2218;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .topo-inicial {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: #2a1e0e;
+    border: 1px solid #5a3e1e;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    color: #c8a060;
+    flex-shrink: 0;
+  }
+
+  .topo-info h1 {
+    font-family: 'Special Elite', cursive;
+    font-size: 15px;
+    font-weight: 400;
+    color: #c8b890;
+    letter-spacing: 0.05em;
+  }
+
+  .topo-info p {
+    font-size: 11px;
+    color: #5a5040;
+    margin-top: 2px;
+    font-family: 'Special Elite', cursive;
+  }
+
+  .abas {
+    display: flex;
+    border-bottom: 1px solid #2a2218;
+    padding: 0 28px;
+  }
+
+  .aba {
+    background: none;
+    border: none;
+    padding: 10px 14px;
+    font-family: 'Special Elite', cursive;
+    font-size: 12px;
+    color: #5a5040;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    letter-spacing: 0.04em;
+  }
+
+  .aba:hover { color: #b8a888; }
+  .aba.ativo { color: #c8a060; border-bottom: 2px solid #c8a060; }
+
+  .corpo { padding: 24px 28px; max-width: 980px; }
+
+  .secao { display: none; }
+  .secao.ativo { display: block; }
+
+  .entrada {
+    padding: 14px 0;
+    border-bottom: 1px solid #1e1c16;
+  }
+
+  .entrada:last-child { border-bottom: none; }
+
+  .entrada-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .entrada-data {
+    font-size: 11px;
+    color: #5a5040;
+    letter-spacing: 0.03em;
+  }
+
+  .entrada-tag {
+    font-size: 10px;
+    padding: 1px 7px;
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .tag-perigo    { background: #2a1008; color: #a04020; }
+  .tag-perigo2    { background: #2a1008; color: #be3305; font-size:12px}
+  .tag-importante { background: #1e1808; color: #907020; }
+  .tag-pessoal   { background: #0e1618; color: #305868; }
+
+  .entrada-texto {
+    font-family: 'Caveat', cursive;
+    font-size: 20px;
+    color: #b8ae9b;
+    line-height: 1.65;
+  }
+
+  .lista-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #1e1c16;
+  }
+
+  .lista-item:last-child { border-bottom: none; }
+
+  .check {
+    width: 14px; height: 14px;
+    border: 1px solid #3a3020;
+    border-radius: 2px;
+    flex-shrink: 0;
+    margin-top: 3px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+    color: transparent;
+    transition: background 0.1s, color 0.1s;
+    user-select: none;
+  }
+
+  .check.feito {
+    background: #2a1e0e;
+    border-color: #c8a060;
+    color: #c8a060;
+  }
+
+  .lista-texto {
+    font-family: 'Caveat', cursive;
+    font-size: 18px;
+    color: #a09070;
+    line-height: 1.5;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .lista-texto.riscado {
+    text-decoration: line-through;
+    color: #4a4030;
+  }
+
+  .secao-label {
+    font-size: 10px;
+    color: #3a3020;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 20px 0 4px;
+  }
+
+  .secao-label:first-child { margin-top: 0; }
+
+  .nome-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #1e1c16;
+  }
+
+  .nome-card:last-child { border-bottom: none; }
+
+  .nome-inicial {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: #1e1808;
+    border: 1px solid #3a2e10;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+    color: #907040;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .nome-inicial.vermelho {
+    background: #1e0808;
+    border-color: #4a1010;
+    color: #a03030;
+  }
+
+  .nome-info .nome {
+    font-size: 13px;
+    color: #c8b890;
+  }
+
+  .nome-info .nota {
+    font-family: 'Caveat', cursive;
+    font-size: 16px;
+    color: #6a5a40;
+    margin-top: 2px;
+    line-height: 1.4;
+  }
+
+  footer {
+    padding: 16px 28px;
+    font-size: 10px;
+    color: #2e2818;
+    letter-spacing: 0.05em;
+    border-top: 1px solid #1e1c16;
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+
+<div class="topo">
+  <div class="topo-inicial">F</div>
+  <div class="topo-info">
+    <h1>Florense — notas pessoais</h1>
+    <p>não mostrar pra ninguém</p>
+  </div>
+</div>
+
+<div class="abas">
+  <button class="aba ativo" onclick="mudar('diario', this)">diário</button>
+  <button class="aba" onclick="mudar('lista', this)">pendências</button>
+</div>
+
+<div class="corpo">
+
+  <section id="sec-diario" class="secao ativo">
+
+    <div class="entrada">
+      <div class="entrada-meta">
+        <span class="entrada-tag tag-perigo">29/04/2023</span>
+      </div>
+      <div class="entrada-texto">Eu não posso mais ficar nessas casas aleatórias, já sei quase que exatamente onde o vídeo foi gravado, é uma área bem próxima à floresta dos tendões. Eu estou chegando cada vez
+        mais perto de lá, mas ainda tenho receio das coisas... O demônio branco não tem me seguido tem um tempo, eu não sei oque aconteceu, será que ele ficou com medo da lâmina? mas isso não faz sentido... Enfim, 
+        acredito que eu chegue lá em pouco tempo.
+      </div>
+    </div>
+
+    <div class="entrada">
+      <div class="entrada-meta">
+        <span class="entrada-tag tag-perigo">30/04/2023</span>
+      </div>
+      <div class="entrada-texto">
+        Cheguei exatamente no mesmo local onde o vídeo foi gravado, tem manchas de sangue pelas paredes, chão e esse lugar fede a carne podre, eu procurei o dia todo mas não achei nem sinal da Charllote. Acho que vou
+        procurar pela mata quando eu acordar, preciso dormir agora...
+      </div>
+    </div>
+
+    <div class="entrada">
+      <div class="entrada-meta">
+        <span class="entrada-tag tag-perigo">01/05/2023</span>
+      </div>
+      <div class="entrada-texto">
+        Estava passando pelas matas quando vi um corpo, meu coração deve ter errado umas 2 batidas, minhas pernas tremiam e quando eu me aproximei mais eu percebi que eu não poderia nem saber se aquela era ou não Charllote... 
+        O cadáver tava em um estado avançado de decomposição, não era possível reconhecer o rosto, corpo, nada. Apesar de não querer olhar muito, não pude deixar de notar o abdômen perfurado, completamente oco por dentro.
+        Eu tirei uma foto, mas percebo agora olhando pra ela que não ficou tão nítida assim, mas talvez seja melhor 
+        assim, não era uma imagem bonita.<br>
+        <img src="Imgs/char.png" width="25%"><br>
+        Sinceramente... não acho que eu vou conseguir encontrar nada aqui, acho que é melhor eu simplesmente aceitar que talvez esse corpo seja dela, e se não for eu nunca estive nem perto dela. Mas então, como aquela fita foi parar 
+        no prédio? eu pensava que alguém queria que eu a encontrasse... Se não foi isso, alguém queria que eu viesse para cá? Ou me queria aqui...<br> E conseguiu. Já tá na hora de voltar.
+      </div>
+    </div>
+
+    <div class="entrada">
+      <div class="entrada-meta">
+        <span class="entrada-tag tag-perigo">03/05/2023</span>
+      </div>
+      <div class="entrada-texto">
+        Você já se perguntou o motivo de um lobo se separar de sua matilha? muitas vezes é por causa de fêmeas, buscando alimento ou coisas assim. Normalmente, a matilha continua segura e o lobo agora solitário passa a ser um alvo fácil. 
+        Então por que dessa vez eu sobrevivi?<br>
+        Quando eu cheguei ao prédio, estava tão claro quanto o momento que eu saí, mas eu estranhei o silêncio, não havia nenhum som vindo de lá de dentro... Meu coração palpitou, eu comecei a suar frio como antes, e quando eu entrei, não tinha nada.
+        Eu subi todos os andares, e não tinha ninguém, pensei que talvez eles tivessem trocado de lugar? talvez quisessem evitar que o antigo líder deles voltasse maluco e arrumasse confusão, mas isso não faria sentido pelas lâmpadas estarem aqui. 
+        Quando eu saí de novo para olhar de fora, eu percebi que atrás do prédio tinha um cheiro incomum, e quando eu cheguei lá, eu não quis acreditar nos meus olhos, na verdade eu quis tirar eles com minhas próprias mãos pra não ter que enxergar aquilo...
+        Havia mais de 30 corpos todos empilhados, um sangrando em cima do outro, todas as pessoas que eu tinha compartilhado risadas, tinha sido odiado, tinha gostado, todo mundo tava ali indistinguivelmente aberto, eu não chequei cada um mas tenho certeza 
+        que todos sem fígado... Por que eles e não eu? por que ele me tirou daqui pra fazer isso? eu não quero acreditar que isso é real... Minha alma morreu junto com eles<br> Naquele momento, eu me deitei junto dos corpos e dormi alí esperand nunca mais acordar.
+        Mas acordei, e tinha que seguir em frente, seguir em frente pelas pessoas que desconfiavam de mim, pelas pessoas que tinham pena de mim, pelas pessoas que gostavam de mim, por todos eles. Eu sabia que ele estava me assistindo dormir ali, mas eu já não 
+        me importava mais com a sua presença, a uma morte dolorosa ainda seria mais serena do que viver dentro da minha mente por um único segundo naquele momento...<br>
+        Eu sei seu nome, coisa branca<br>
+        Eu entendi quando vi o vídeo de Charllote, mas eu queria acreditar...<br>
+        Deus, como eu queria acreditar... Que eu estava errado.<br>
+        Mas no fundo eu sabia que era ela, é por isso que eu não morri junto de todos, não é?<br>
+        É por isso 
+        que ela me tirou daqui antes de causar tudo isso...<br> 
+        Você ainda gosta do titio... Não é?<br>
+        <spam class="entrada-tag tag-perigo2">Alice?</spam>
+      </div>
+    </div>
+
+    <div class="entrada">
+      <div class="entrada-meta">
+        <span class="entrada-tag tag-perigo">04/05/2023</span>
+      </div>
+      <div class="entrada-texto">
+        Eu não tenho tido vontade de me mover mais... O tempo passa e eu não consigo distinguir oque é real do que não é. Qual o sentido? Por que eu estou vivo... Eu mereço tanto sofrer assim? Queria que essa coisa acabasse logo com isso...<br>
+        Não tenho coragem, eu sou um covarde... Não conseguiria acabar com tudo eu mesmo, e talvez esse demônio nem me deixaria morrer tranquilamente. Será que eu tô ficando maluco? minha cabeça dói só de tentar pensar em tudo isso...<br>
+        Eu quero que acabe. É solitário viver nesse prédio sem mais ninguém... Todas essas paredes, todos esses andares, todo esse lugar guarda memórias que eu me recuso a deixar morrer... Eu vou lembrar, vou me lembrar do nome de cada um deles.
+      </div>
+    </div>
+
+    <div class="entrada">
+      <div class="entrada-meta">
+        <span class="entrada-tag tag-perigo">06/05/2023</span>
+      </div>
+      <div class="entrada-texto">
+        Por que essa coisa não vai embora...? Por que ela tem que ficar me encarando o tempo todo? Esses olhos brilhando com uma intensidade maior que as próprias luzes que deveriam o afugentar... É uma cena terrível, me sinto impotente, sem 
+        controle sobre minha própria vida ou morte, será que se eu morresse ela me deixaria morto? Hoje eu voltei ao local dos corpos, eles estavam todos lá ainda, exatamente na mesma posição. A única diferença era que o sangue já tinha secado e o 
+        fedor era pior... Mas quando você mora do lado dessa pilha de corpos, o cheiro não é algo que te incomoda mais depois de um tempo. Eu queria checar uma coisa, queria saber se eles ainda se lembravam de mim, se eles ainda se importavam. Procurei 
+        nos pertences de todos e não encontrei nada que remetesse a mim... Na verdade, até descobri que tinham eleito uma nova liderança... É engraçado, né? O homem que deixou vocês pra trás e ficou vulnerável foi quem sobreviveu... e vocês todos morreram... 
+        Eu pensei que seus fígados tinham sido retirados, mas não, eles estavam lá ainda. Seus corpos estavam quase intactos... Só alguns, alguns tiveram seus fígados tirados... Qual a motivação dessa coisa pra fazer algo terrível assim?
+      </div>
+    </div>
+
+    <div class="entrada">
+      <div class="entrada-meta">
+        <span class="entrada-tag tag-perigo">07/05/2023</span>
+      </div>
+      <div class="entrada-texto">
+        Sabe, Alice... Eu sou grato por você ter me deixado viver, é bom estar vivo e poder lembrar dos que já se foram. Eu ainda quero colocar um fim nisso tudo, eu sei que você não faria uma coisa tão horrível 
+        por vontade própria...<br>
+        É o Dex, não é, pequena? É ele quem tem feito essas coisas... Eu sei.<br> 
+        Você deve ter ficado com medo quando eu atirei em você, será que você vai perdoar o titio? Ele também tava com medo naquela hora... A gente pode ser amigos ainda? Eu não te culpo, Alice.<br>
+        Enquanto escrevo isso, eu te vejo, sei que você tá aí... dentro dos arbustos, será que você ainda pensa ser uma criancinha pequena? Ó Alice... 
+        Você não está nem um pouco escondida, querida, você é enorme...<br> 
+        Você é aterrorizante, pequena Alice...<br> 
+        Eu quero que isso tudo acabe, você também, não é? Queria que você falasse com o titio...<br>
+        Uma última vez... queria ouvir sua voz, criança...<br>
+        <span class="entrada-tag tag-perigo2">...</span>
+      </div>
+    </div>
+    
+    <div class="entrada">
+      <div class="entrada-meta">
+        <span class="entrada-tag tag-perigo">09/05/2023</span>
+      </div>
+      <div class="entrada-texto">
+        Você é uma menina curiosa, Alice... Enquanto eu dormia você deixou partes dos fígados dos meus amigos do meu lado...<br>
+        Isso devia ser um presente...?<br>
+        Eu me pergunto o motivo de você ter me deixado vivo até agora...<br> 
+        Você quer que eu entenda algo... Eu sei...<br>
+        Crescer é assustador, você já deve ter escutado isso, não é? Mas acho que pra você, é pior ainda, você cresceu tanto... É oque você quer? crescer?<br>
+        Os fígados que você me deu... estavam inteiros ainda, não havia nenhuma lesão...<br>
+        Eu não entendo...<br> 
+        Não sei oque você quer dizer com isso tudo...<br>
+        <span class="entrada-tag tag-perigo2">...</span><br>
+      </div>
+    </div>
+
+    <div class="entrada">
+      <div class="entrada-meta">
+        <span class="entrada-tag tag-perigo">10/05/2023</span>
+      </div>
+      <div class="entrada-texto">
+        Eu acho que você deve ter momentos de controle ocasionais, não é, Alice? O Dex também controla as vezes, você tem medo das coisas que ele faz, não é? eu me lembro da nossa conversa... 
+        Mas por que você continua me trazendo partes humanas? principalmente fígados, alguns partidos e outros não... Eu prestei mais atenção hoje e percebi que os inteiros são de órgãos normais, e os partidos quase sempre 
+        tem quantidades mínimas de Selenita, mas por que você faz isso? Logo depois de me dar os com mineral, você os toma e devora na minha frente, você quer que eu veja isso né? Isso é nojento, Alice... Esse foi o destino 
+        dela também? Pensei que ela era sua amiga também...
+        <span class="entrada-tag tag-perigo2">...</span><br>
+      </div>
+    </div>
+
+    <div class="entrada">
+      <div class="entrada-meta">
+        <span class="entrada-tag tag-perigo">12/05/2023</span>
+      </div>
+      <div class="entrada-texto">
+        Alice... será que é certo eu chamar você por esse nome... Dex? Eu não consigo distinguir quem é você mais, você raramente vem me ver, eu continuo sozinho nesse prédio iluminadoo, as luzes não fazem nada em você mais, você 
+        não se importa mais com elas... Como eu poderia parar você... Eu preciso?<br>
+        Hoje eu relembrei sobre o tempo que eu trabalhava na companhia, e eu me lembrei de algo interessante, A... Dex. Os primeiros infectados capturados pela corporação sempre eram estudados, e eu me recordo deles conseguirem mineral mesmo 
+        depois da lua ter sumido, isso deveria ser impossível, não? A não ser que... os infectados também produzam mineral, mas em quantidades pequenas... exatamente como esses fígados que você me traz as vezes. Isso significa que você prefere 
+        comer infectados, você gosta de consumir o minério? Eu pensava que ele fazia mal aos infectados... De qualquer forma, eu não preciso entender os mínimos detalhes. <br>
+        Eu pensei mais hoje, eu ainda lembro deles toda vez que fecho os olhos, vejo seus rostos e depois me lembro de ver seus corpos empilhados sangrando um sobre o outro, sinto o cheiro daquilo sempre que tento dormir... 
+        E mesmo assim, eu ainda continuo aqui nesse prédio, e você também.
+        <br><span class="entrada-tag tag-perigo2">...</span><br>
+        Ei, Alice... A companhia tem muito mais minério do que qualquer infectado que você vai encontrar por aí, muito mais do que você conseguiria encontrar sozinha... Você sabe, eu também sei oque isso significa, eu entendo oque eu mesmo estou sugerindo 
+        que aconteça, e eu me odeio por isso... Mas... talvez esse mundo não tenha mais salvação como eu pensava, então se for pra tudo acabar e recomeçar, quero que seja um processo rápido pelo menos. Oque você acha... Dex?
+        <br><span class="entrada-tag tag-perigo2">Ahh...</span><br>
+      </div>
+    </div>
+
+    <div class="entrada">
+      <div class="entrada-meta">
+        <span class="entrada-tag tag-perigo">13/05/2023</span>
+      </div>
+      <div class="entrada-texto">
+        O tempo passa, ele é imbatível,e eu não me reconheço mais quando me olho no espelho. As vezes eu tento tirar essa máscara de pele que tenho no rosto, tento arrancar esse disfarce, mas parece preso na minha cara, quem colocou isso aqui? Eu preciso 
+        terminar oque eu disse que terminaria, preciso recomeçar as coisas, recomeçar tudo.<br>
+        Errado... Ta tudo errado nesse lugar, nada parece no lugar certo, tudo tá deslocado, eu to deslocado...<br>
+        Recentemente, eu tentei retomar as atividades que eu tinha antes das coisas terem acontecido, toda aquela história de insurgência e tal... Mas eu não quero novas pessoas, não quero encontrar novas presas pra colocar no prato dele. Eu preciso fazer Isso 
+        sozinho, eu mereço fazer isso sozinho... Se eu não tivesse saído daqui naquela vez, eles estariam todos vivos ainda. Eu vou o culpado pela morte deles, aquela coisa só fez o seu trabalho...<br>
+        Eu tenho tentado entrar nas brechas que eu mesmo deixei ao sair da companhia, mas eu não consegui até agora, eles corrigiram algumas coisas. Caso eu consiga, eu vou deixar pistas lá, espero que alguém as encontre em algum momento... 
+        As atividades do Dex com o mineral me fazem recordar de algo que eu vi sobre magnetismo quando eu estava lá dentro, mas não completamente, eu tentei medir o magnetismo do mineral recentemente, mas não parecia algo possível por enquanto...
+      </div>
+    </div>
+
+    <div class="entrada">
+      <div class="entrada-meta">
+        <span class="entrada-tag tag-perigo">15/05/2023</span>
+      </div>
+      <div class="entrada-texto">
+        É um processo difícil, mas eventualmente eu tenho conseguido acessar as backdoors do site da companhia que eu usava antes do incidente da fita da Charllote. No site deles, havia relatórios que eu não tinha lido ainda, um em específico me chamou atenção:
+        Um "doutor da praga" que na verdade é um infectado de classe "Apolion", o único catalogado no momento na verdade. Eu tive tempo suficiente para fazer algumas "visitas" aos arredores do prédio da organização, e como eles acham que todos estão mortos, não se preocupam 
+        tanto em checar a idêntidade de cada um que se aproxima, então eu pude chegar perto suficiente do prédio para fazer um teste em específico. Com o mineral dos fígados que Alice me deu de "presente", eu fiz algumas alterações em um gaussímetro que encontrei em uma loja comum, 
+        ele se tornou basicamente um detector de ressonância biológica-magnética pelas propriedades do minério. Com isso, eu testei a intensidade que o minério afeta as áreas próximas ao prédio e é absurdo...<br>
+        É quase como se aquele local inteiro fosse um imã gigantesco que reage especificamente com a infecção, isso explicaria o motivo de não existirem infectados nas proximidades, e também o motivo de Alice não ter matado todos ali dentro até agora. 
+        Para que ela entre, eu vou precisar diminuir a frequência desse campo de alguma forma, e talvez esse "Doutor da Peste" seja a solução. Ele não é exatamente um infectado comum, já que como eu disse, ele é o único Apolion que existe no momento, e a pura presença dele 
+        dentro desse campo deveria ser impossível, mas se torna possível por que ele parece ter uma biologia própria para isso. Eu fiz testes de intensidade do campo em dois extremos: perto e longe do tal espelho que ele supostamente fica, e quando estou afastado desse espelho, o campo é 
+        cerca de 30x mais fraco, oque significa que esse infectado está "atraindo" o magnetismo para ele mesmo, e talvez com isso eu possa fazer com que Alice tenha um caminho de entrada...
+      </div>
+    </div>
+
+    <div class="entrada">
+      <div class="entrada-meta">
+        <span class="entrada-tag tag-perigo">17/05/2023</span>
+      </div>
+      <div class="entrada-texto">
+        Ficaria espantado se fosse fácil, claro que não seria... Eles sabem sobre a desproporcionalidade do campo, sabem que o doutor puxa para onde está, e sabem que ele fica estático em um único ponto do prédio, e por isso, o outro polo da empresa tem uma segurança armada muito maior. 
+        Passar por aqueles homens não seria nem um pouco difícil pra o Dex, mas eu não quero arriscar que eles tenham armas municiadas com o minério e acabem ferindo a única arma que eu tenho... Eu preciso mover o doutor e fazer ele entrar pela área do espelho, é o mais seguro e garantido 
+        de dar certo. Eu falei com Maycon hoje... pois é, com o mesmo Maycon que me odiava quando eu trabalhava lá, parece que todo mundo percebe a sujeira que produz eventualmente... Eu vou deixar o nosso registro de conversa aqui, mas fico feliz dele perceber a insustentabilidade da organização.
+        <br><audio controls>
+          <source src="Untitled.mp3" type="audio/mpeg">
+            Seu navegador não suporta o elemento de áudio.
+        </audio><br>
+        O áudio ficou meio abafado olhando depois da gravação, mas esse é só um corte da conversa inteira, passamos mais de 2 horas falando sobre variáveis... Consegui concluir os preparativos pelo menos.
+      </div>
+    </div>
+
+  </section>
+
+  <section id="sec-lista" class="secao">
+
+    <div class="lista-item">
+      <div class="check" onclick="toggleCheck(this)">x</div>
+      <div class="lista-texto" onclick="toggleItem(this)">Saber oque aconteceu com a Charllote</div>
+    </div>
+    <div class="lista-item">
+      <div class="check" onclick="toggleCheck(this)"></div>
+      <div class="lista-texto" onclick="toggleItem(this)">Saber oque é o "demônio branco"</div>
+    </div>
+    <div class="lista-item">
+      <div class="check" onclick="toggleCheck(this)"></div>
+      <div class="lista-texto" onclick="toggleItem(this)">Entender qual o objetivo dele</div>
+    </div>
+    <div class="lista-item">
+      <div class="check" onclick="toggleCheck(this)"></div>
+      <div class="lista-texto" onclick="toggleItem(this)">Ajudar</div>
+    </div>
+    <div class="entrada-texto">Faça conforme lê.</div>
+    <div class="entrada-texto">
+        <a href="Final.html">
+        <button id="btnSecreto" style="display:none;">
+        Clique aqui
+        </button>
+        </a>
+        </div>
+        </section>
+</div>
+
+<footer>registro privado — 2023</footer>
+
+<script>
+function mudar(id, btn) {
+  document.querySelectorAll('.secao').forEach(s => s.classList.remove('ativo'));
+  document.querySelectorAll('.aba').forEach(b => b.classList.remove('ativo'));
+  document.getElementById('sec-' + id).classList.add('ativo');
+  btn.classList.add('ativo');
+}
+
+function toggleCheck(el) {
+  el.classList.toggle('feito');
+  if (el.classList.contains('feito')) el.textContent = 'x';
+  else el.textContent = '';
+}
+let i=0
+function toggleItem(el) {
+  el.classList.toggle('riscado');
+  const check = el.previousElementSibling;
+  check.classList.toggle('feito');
+  
+  if (check.classList.contains('feito')) {
+    check.textContent = 'x';
+    i++; 
+  } else {
+    check.textContent = '';
+    i--;
+  }
+  if (i>=4){
+     let botao = document.getElementById("btnSecreto");
+
+        if(botao){
+            botao.style.display = "block";
+        }
+}
+
+}
+</script>
+
+</body>
+</html>

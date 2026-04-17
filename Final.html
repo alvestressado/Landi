@@ -1,0 +1,214 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Caveat:wght@400;600&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .wrap {
+    background: linear-gradient(to bottom, #0e0c0a, #110000);
+    min-height: 950px;
+    padding: 36px 28px 28px;
+    font-family: 'Special Elite', cursive;
+    color: #b8a888;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .grain {
+    position: absolute; inset: 0; pointer-events: none; opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .scanline {
+    position: absolute; inset: 0; pointer-events: none; opacity: 0.04;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, #000 2px, #000 3px);
+  }
+.video-wrapper {
+  position: relative;
+  width: 80%;
+  padding-top: 45%; /* 16:9 */
+  background: #000;
+  border: 1px solid #2a1808;
+  overflow: hidden;
+  margin:0 auto;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+  .header {
+    display: flex; align-items: center; gap: 10px;
+    border-bottom: 1px solid #2a2218; padding-bottom: 14px; margin-bottom: 24px;
+  }
+
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: #a03020; animation: blink 2s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+  .status-label {
+    font-size: 10px; letter-spacing: 0.12em; color: #5a3a2a; text-transform: uppercase;
+  }
+
+  .passo { display: none; }
+  .passo.ativo { display: block; }
+
+  .fade-in { animation: fadeIn 0.8s ease forwards; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+
+  .fade-text {
+    font-family: 'Caveat', cursive;
+    font-size: 19px;
+    color: #a09070;
+    line-height: 1.7;
+    margin-bottom: 14px;
+  }
+
+  .destaque {
+    color: #c8b890;
+    font-size: 17px;
+    font-family: 'Special Elite', cursive;
+    line-height: 1.8;
+    margin-bottom: 22px;
+    padding: 12px 16px;
+    border-left: 2px solid #3a2010;
+    background: #120e08;
+  }
+
+  .input-area {
+    display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap;
+  }
+
+  .input-area input {
+    flex: 1; min-width: 180px;
+    background: #0a0806; border: 1px solid #2a2010;
+    color: #c8b890; padding: 10px 14px;
+    font-family: 'Special Elite', cursive; font-size: 13px;
+    letter-spacing: 0.05em; outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .input-area input:focus { border-color: #5a3e1e; }
+  .input-area input.erro { border-color: #6a1808; animation: shake 0.3s; }
+  @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-4px)} 75%{transform:translateX(4px)} }
+
+  .btn {
+    background: #1a1008; border: 1px solid #3a2010;
+    color: #c8a060; padding: 10px 20px;
+    font-family: 'Special Elite', cursive; font-size: 12px;
+    letter-spacing: 0.1em; cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    text-transform: uppercase;
+  }
+  .btn:hover { background: #2a1e0e; border-color: #5a3e1e; }
+
+  .erro-msg {
+    font-size: 12px; color: #8a2010; letter-spacing: 0.06em;
+    margin-top: 10px; display: none; font-family: 'Special Elite', cursive;
+    text-transform: uppercase;
+  }
+
+  .video-container {
+    margin-top: 16px;
+    border: 1px solid #2a1808;
+    background: #000;
+    position: relative;
+  }
+
+  .video-container video {
+    width: 100%; display: block;
+  }
+
+  .video-label {
+    font-size: 10px; color: #3a2010; letter-spacing: 0.08em;
+    text-transform: uppercase; margin-bottom: 6px;
+  }
+
+  .check-icon {
+    display: inline-block; width: 10px; height: 10px;
+    border-radius: 50%; background: #2a5a1a; margin-right: 6px;
+  }
+
+  .acesso-ok {
+    font-size: 11px; color: #4a6a30; letter-spacing: 0.08em;
+    text-transform: uppercase; margin-bottom: 14px;
+    display: flex; align-items: center; gap: 6px;
+  }
+</style>
+
+<div class="wrap">
+  <div class="grain"></div>
+  <div class="scanline"></div>
+
+  <div class="header">
+    <div class="dot"></div>
+    <span class="status-label">arquivo_florense — verificação de identidade</span>
+  </div>
+
+  <div id="passo1" class="passo ativo fade-in">
+    <p class="fade-text">Olá... Os arquivos aqui não são tão estáveis depois do que aconteceu...<br>
+    Preciso que confirme sua identidade respondendo:</p>
+    <div class="destaque">
+      Em comum entre os cantos mais profundos do inferno, purgatório e paraíso, apenas uma.<br>
+      Mesmo nos lugares onde a esperança deveria morrer, ainda há algo que insiste em permanecer acima de tudo<br>
+      Uma vez lá dentro, tudo estará acabado, portanto,<br>
+      <em>Deixai, ó vós que entrais, toda a esperança!<br>
+        (Inf,XXXIV,139)
+      </em>
+    </div>
+    <div class="input-area">
+      <input type="text" id="nomeInput" placeholder="digite aqui...">
+      <button class="btn" onclick="verificar()">REGISTRAR</button>
+    </div>
+    <p class="erro-msg" id="erroMsg">▸ &nbsp; acesso negado — preste atenção</p>
+  </div>
+
+  <div id="passo2" class="passo fade-in">
+    <p class="acesso-ok">
+      <span style="width:8px;height:8px;border-radius:50%;background:#4a6a30;display:inline-block;"></span>
+      identidade confirmada
+    </p>
+    <p class="fade-text">Acesso autorizado. Os arquivos abaixo foram recuperados.</p>
+    <p class="video-label">▸ &nbsp; registro de vídeo — O fim</p>
+    <div class="video-wrapper">
+       <iframe 
+        src="https://drive.google.com/file/d/1DhhKT37WR1NqXVgVkBTfbOdKmN1sIQJR/preview" 
+        allow="autoplay">
+        </iframe>
+        </div>
+  </div>
+</div>
+
+<script>
+const respostas = ['Estrela','estrela','Estrela.','estrela.'];
+
+function normalizar(s) {
+  return s.toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .trim().replace(/[.,!?]/g,'');
+}
+
+function verificar() {
+  const val = normalizar(document.getElementById('nomeInput').value);
+  const input = document.getElementById('nomeInput');
+  const erro = document.getElementById('erroMsg');
+
+  if (respostas.some(r => normalizar(r) === val)) {
+    document.getElementById('passo1').style.display = 'none';
+    const p2 = document.getElementById('passo2');
+    p2.classList.add('ativo');
+    p2.style.display = 'block';
+  } else {
+    input.classList.add('erro');
+    erro.style.display = 'block';
+    setTimeout(() => input.classList.remove('erro'), 400);
+  }
+}
+
+document.getElementById('nomeInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') verificar();
+});
+</script>

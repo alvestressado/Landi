@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>MoonCompany - Segurança (Maycon)</title>
+
+<style>
+body{
+    margin:0;
+    font-family:'Courier New', monospace;
+    background:#0a0a0a;
+    color:#dcdcdc;
+}
+
+.sidebar{
+    position:fixed;
+    width:240px;
+    height:100%;
+    background:#111;
+    padding:20px;
+    border-right:2px solid #222;
+}
+
+.sidebar h2{
+    color:#ff4d4d;
+    margin-bottom:20px;
+}
+
+.sidebar button{
+    width:100%;
+    margin-bottom:10px;
+    padding:10px;
+    background:#1a1a1a;
+    border:none;
+    color:#ccc;
+    cursor:pointer;
+    text-align:left;
+}
+
+.sidebar button:hover{
+    background:#2a2a2a;
+}
+
+.content{
+    margin-left:260px;
+    padding:30px;
+}
+
+.box{
+    background:#111;
+    padding:20px;
+    border:1px solid #222;
+    margin-bottom:20px;
+    box-shadow:0 0 10px rgba(255,0,0,0.1);
+}
+
+.titulo{
+    color:#ff4d4d;
+    border-bottom:1px solid #222;
+    margin-bottom:15px;
+    padding-bottom:10px;
+}
+
+.log{
+    line-height:1.6;
+}
+
+.alerta{
+    color:#ff4d4d;
+    font-weight:bold;
+}
+
+.titt{
+    color:rgb(218, 88, 88);
+    font-weight: bold;
+}
+.classificado{
+    color:#888;
+    font-style:italic;
+}
+
+.hidden{
+    color:transparent;
+    user-select:text;
+}
+.video-wrapper {
+  position: relative;
+  width: 80%;
+  padding-top: 45%; /* 16:9 */
+  background: #000;
+  border: 1px solid #2a1808;
+  overflow: hidden;
+  margin:0 auto;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+    <h2>SETOR TÁTICO</h2>
+
+    <button onclick="carregar('logs')">Relatórios Operacionais</button>
+    <button onclick="carregar('ocorrencias')">Ocorrências</button>
+    <button onclick="carregar('infectados')">Classificação de Ameaças</button>
+</div>
+
+<div class="content">
+    <div id="tela" class="box">
+        <div class="titulo">ACESSO RESTRITO</div>
+        <p>Terminal da equipe de segurança. Selecione um diretório.</p>
+    </div>
+</div>
+
+<script>
+alert("RGlnaXRlIHNldSBub21lIHBhcmEgbyB2ZXI eu confio em você")
+function carregar(tipo){
+    let tela = document.getElementById("tela");
+
+    if(tipo === "logs"){
+        tela.innerHTML = `
+        <div class="titulo">RELATÓRIOS OPERACIONAIS</div>
+
+        <div class="log">
+        <b>[MC-278 | 05/12/2022]</b><br>
+        <span class="titt">Atividade de Patrulha</span><br>
+
+        Entrada em fábrica abandonada. Dois infectados foram avistados, mas fugiram pela presença da luz. Contudo, um infectado oculto atacou a equipe de surpreso, sendo abatido logo em seguida. Acabamos não levando o corpo do infectado morto<br>
+        Um agente ferido.<br>
+        <span class="alerta">Movimentação adicional detectada após retirada.</span>
+        </div><br>
+
+        <div class="log">
+        <b>[MC-282 | 08/12/2022]</b><br>
+        <span class="titt">Atividade de Patrulha</span><br>
+
+        Restos humanos encontrados em bueiro. Pareciam haver cerca de 4 pessoas todas em uma amâlgama de carne, estudos posteriores confirmaram a tentativa de integração entre os organismos por parte de um terceiro.<br>
+        Estrutura corporal comprometida.<br>
+        <span class="alerta">Sinais de consumo seletivo.</span>
+        </div><br>
+
+        <div class="log">
+        <b>[MC-285 | 14/12/2022]</b><br>
+        <span class="titt">Atividade de Patrulha</span><br>
+
+        Edifício sem iluminação funcional mesmo com a presença de lâmpadas da organização, a luz parecia existir mas não se propagar.<br>
+        Entidade esguia e pálida observada ao fundo. Os agentes foram instruídos a se retirar imediatamente.<br>
+        </div><br>
+
+        <div class="log">
+        <b>[MC-289 | 26/12/2022]</b><br>
+        <span class="titt">Atividade de Entrega</span><br>
+
+        Grupo de sobreviventes que se escondia em bueiros dizem conviver diariamente com um infectado. Quando questionados sobre, um deles se prontificou a levar a equipe até o doente para que fosse levado para a instituição e curado. 
+        Contudo, a equipe sofreu uma emboscada de um grupo maior de sobreviventes extremamente agressivos, 16 pessoas ficaram feridas, nenhum soldado foi acometido por ferimentos. Após isso, a equipe saiu sem deixar os mantimentos.<br>
+        Mais tarde naquele mesmo dia, todos os 27 sobreviventes que haviam no local foram reportados mortos e alguns tiveram seus fígados devorados.<br>
+        </div><br>
+
+        <div class="log">
+        <b>[MC-291 | 02/01/2023]</b><br>
+        <span class="titt">Atividade de Checagem</span><br>
+
+        O comandante Maycon e sua equipe particular investigaram uma área de mata na qual havia sido reportada por barulhos de crianças falando, quando chegaram lá, se dividiram para procurar algo. As imagens a seguir são da agente Kate Blurray<br>
+        
+        <div class="video-wrapper">
+        <iframe 
+        src="https://drive.google.com/file/d/1ILMViE6YXrKodZ618Kix8B2oZlFt5kq5/preview" 
+        allow="autoplay">
+        </iframe> 
+        </div>
+        
+        <br>
+        Alguns dos gritos registrados no vídeo não correspondem aos da agente Kate, portanto foi concluído que o infectado em questão era capaz de imitar vozes. Posteriormente, o corpo da agente foi encontrado junto dessa gravação junto de outras 3 pessoas. Os sons infantis 
+        não foram identificados.<br>
+        </div><br>
+
+        <div class="log">
+        <b>[MC-302 | 16/01/2023]</b><br>
+        <span class="titt">Atividade de Entrega</span><br>
+        O grupo de entrega encontrou uma passagem escondida no subsolo de uma fábrica, onde haviam 3 crianças escondidas que haviam chamado os agentes. Elas foram escoltadas para fora da fábrica, mas uma delas continuava falando sobre querer continuar brincando lá. 
+        Quando questionada, ela disse que brincava com uma menina e seu cachorrinho, mas que ela disse que se eles fossem embora dali, não podia proteger eles. Contudo, essa garota também não sabia trazer alimento para eles, e por isso eles pediram ajuda da companhia. <br>
+        <br>
+        As crianças foram levadas até o quartel da instituição, onde serão submetidas a testes para saber se estão ou não infectadas primariamente. Mas os agentes que as trouxeram para o prédio, disseram estarem se sentindo observados a todo momento até chegarem perto das dependências da empresa.
+        </div><br>
+
+        <div class="log">
+        <b>[MC-306 | 20/01/2023]</b><br>
+        <span class="titt">Atividade de Checagem</span><br>
+        Foi enviada uma denúncia sobre grupos hostis ao redor de uma zona residencial, onde Maycon e sua equipe foram presencialmente para checar. Ao chegar lá, haviam cerca de 6 infectados ao redor de um corpo todos brigando para usar um aparelho telefone. Ao que tudo indica, eles que 
+        chamaram a equipe de Maycon. Os agentes presentes contiveram a ameaça e chegaram a conclusão que os próprios infectados haviam convocado eles.
+        <br>
+        Maycon mais tarde relatou sentir uma malícia enorme observando eles ao redor das árvores, mas evitou de dizer para os agentes ali presentes para evitar pânico. Ele acredita que tenha sido algo nas árvores que os chamou, já que os infectados não estavam nem permitindo que só um usasse o celular.<br>
+        <img src="imgs/arvore.png" width ="25%" class="img">
+        </div><br>
+
+        <div class="log">
+        <b>[MC-310 | 28/01/2023]</b><br>
+        <span class="titt">Atividade de Patrulha</span><br>
+        Durante uma patrulha, um dos agentes se separou dos outros enquanto rondava uma zona comercial. Ao entrar em uma das lojas, viu 4 pessoas armadas procurando por mantimentos, mas não encontrando nada. Quando o viram, elas pediram por uma daquelas luzes e o agente as deu uma.
+        O agente diz que eles disseram que estavam em um grupo maior e estavam todos escondidos perto de uma área florestal e deram a localização exata para o agente. Eles pediram pessoalmente que levassem suprimentos para a localidade em questão.<br>
+        <br>
+        Com base em todos os eventos recentes de emboscas e coisas do gênero, o agente hesitou, mas acabou aceitando por ter alguma fé ainda na humanidade das pessoas.
+        </div><br>
+
+        <div class="log">
+        <b>[MC-311 | 29/01/2023]</b><br>
+        <span class="titt">Atividade de Entrega</span><br>
+        O grupo de 4 pessoas que haviam pedido a entrega faziam parte de uma comunidade de cerca de 63 pessoas, todas escondidas em cabanas perto de uma floresta. Os mantimentos foram dados a eles, que agradeceram e também pediram por luzes, que também lhes foram cedidas. Ao final, os agentes 
+        se retiraram, deixando para trás grandes quantidades de suprimentos e lâmpadas já instaladas na frente das cabanas<br>
+        Na volta para a companhia, os soldados estranharam que a floresta parecia olhar constantemente para eles, de forma que um deles relata barulhos estranhos. Foi descoberto que o corpo de 2 dos 3 agentes se encontravam ocupados naquele momento.<br>
+        A seguir, a gravação da câmera corporal do soldado Michael Buzz, que precisava fazer silêncio para não atrair seus colegas.<br>
+        
+        <div class="video-wrapper">
+       <iframe 
+        src="https://drive.google.com/file/d/1yIAUc045X1l_YmkE7IAZGLCy7qcM3JMH/preview" 
+        allow="autoplay">
+        </iframe>
+        </div>
+        
+        <br>
+        Na gravação, é possível ver mais um amontoado de matéria orgânica, ao que parece ser tendões ligados. O organismo da gravação não foi localizado por buscas posteriores ao local, assim como o corpo do agente Michael ou o paradeiro de seus companheiros. A câmera com a gravação parece ter sido 
+        deixada propositalmente para trás.
+        </div><br>
+
+        <div class="log">
+        <b>[MC-315 | 06/02/2023]</b><br>
+        <span class="titt">Atividade de Checagem</span><br>
+        Após os acontecimentos na floresta, foram recebidas mais denúncias sobre sons irregulares vindo das árvores. A equipe de Maycon foi instruída a ser extremamente cuidadosa e retornar sob qualquer suspeita de perigo inevitável. Ao chegarem no local, 
+        as cabanas iluminadas permaneciam iluminadas, mas agora não havia nenhum dos 63 sobreviventes ali. Foram encontrados os mantimentos dados pela organização quase que completos ainda, suspeita-se do organismo feito de tendões. 
+        <br>
+        Como não encontraram nada, a equipe de Maycon retornou até a companhia.<br>
+        Capitão Maycon deseja salientar que a maior parte das checagens de tempos para cá, não tem apresentado infectados de Variante inicial. O capitão insistiu para Nashell que parasse de mandar seus homens para a morte sem que possam ao menos saber oque fazer. Nashell disse que 
+        que a companhia não tem condições de arcar com o único método de ativamente eliminar as ameaças, vidas serão tomadas até que possam juntar quantidades suficientes. Maycon se retirou visivelmente triste
+        </div><br>
+
+        <div class="log">
+        <b>[MC-310 | 20/02/2023]</b><br>
+        <span class="titt">Atividade de Entrega</span><br>
+        Uma equipe de 4 agentes, durante uma patrulha comum, encontraram oque parecia uma fita no chão. Eles terminaram seu expediente e trouxeram a fita para a organização para que possamos tocar. Foi descoberto que atrás da fita havia escrito "Liddell"
+        <br>
+        A fita tocada não pode ser mostrada aqui por ordens da diretoria.
+
+        <div class="video-wrapper" id="videoWrapper" style="display:none;">
+       <iframe 
+        id="videoSecreto"
+        src=""
+        allow="autoplay">
+        </iframe>
+        </div>
+        <br>
+
+        <div class="log">
+        <b>[MC-318 | 28/02/2023]</b><br>
+        <span class="titt">Atividade de Patrulha</span><br>
+        As crianças resgatadas no relatório MC-302 foram liberadas a um tempo da instituição pois não apresentavam nenhum sinal de estarem infectadas, e portanto não tinham utilidade para Nashell. Suspeita-se que essas crianças tentaram voltar ao seu abrigo inicial na fábrica, mas foram atacadas por infectados. 
+        Os agentes durante a patrulha encontraram as crianças, 2 estavam vivas e sem nenhum ferimento, 1 delas estava morta no chão com órgãos e técido muscular faltando sem padrão aparente. Os infectados que supostamente os atacaram eram 8 todos de níveis iniciais da infecção, suspeita-se serem parte do grupo da floresta.<br>
+        Todos os infectados estavam dilacerados jogados por toda a fábrica, parecendo que algo enorme fazia os matado. Seguindo o padrão, todos tinham órgãos faltando parecendo ser aleatório, mas nenhum deles apresentava fígado. Quando perguntadas sobre oque ocorreu, as crianças disseram que a garota do cachorrinho havia os salvado, 
+        mas o cachorro demandava um sacrifício.
+        <br>
+        Os agentes tentaram pegar os corpos, mas as crianças insistiram que eles não teriam valor nenhum, e pediu para que deixassem ali para que ela pudesse voltar e se alimentar depois. Os agentes concordaram, e ficaram de prontidão esperando que algo aparecesse. Passaram cerca de 40 minutos e foi relatado barulhos estranhos vindo dos arredores. 
+        As crianças restantes estavam escondidas no subsolo como antes. Os últimos registros de áudio foram sons de mastigação.
+        </div><br>
+
+        <div class="log">
+        <b>[MC-320 | 28/01/2023]</b><br>
+        <span class="titt">Atividade de Checagem</span><br>
+        Os agentes foram chamados por um grupo de 2 garotas que alegavam ter sido vítimas de abuso por parte de um grupo maior. Ao chegarem no local que elas disseram que eles estariam, encontraram 3 corpos de infectados, todos desmembrados mas com seus fígados intactos. A procura continuou por cerca de 4 horas, até a equipe encontrou um grupo de 
+        7 rapazes se aproveitando do corpo de 2 infectadas mortas. Eles foram imediatamente neutralizados. As 2 meninas que requisitaram a checagem agradeceram, e posteriormente foram encontradas mortas em uma zona de mata pela região, ao que tudo indica, cometeram suicídio.
+        <br>
+        Todos da equipe responsável pelo trabalho deixou de trabalhar nos casos de campo, eles disseram ter construído empatia pelas garotas.
+        </div> <br>
+
+        <div class="log">
+        <b>[MC-324 | 03/02/2023]</b><br>
+        <span class="titt">Atividade de Entrega</span><br>
+        Maycon e sua equipe foram até um vilarejo ao lado da cidade, lá eles encontraram 2 pessoas, sendo um menino e uma menina. Eles disseram que estavam sobrevivendo pela produção de hortalíças antes do final dos dias, mas que agora já não sobrava mais nada e por isso tiveram que pedir ajuda. 
+        A equipe entregou os mantimentos para os dois e iriam embora logo em seguida mas foram impedidos pelos mesmos pois eles tinham receio de voltarem sozinhos para a cidade, então pediram para que pudessem acompanhar os agentes. Maycon concordou e levou os dois jovens com ele e seus homens. 
+        O caminho foi longo, então eles puderam conversar entre si e se conhecer melhor, se tratava de um casal de namorados que estavam juntos desde o começo do fim dos tempos, e diziam que nunca iriam se separar. Maycon relata ter tido um dejavu com tamanha inocência. De qualquer forma, conforme eles chegavam
+        mais perto da cidade, a quantidade de infectados aumentava exponencialmente, e todos eram eliminados pelos homens de Maycon. Ao chegar na própria cidade, eles iriam parar um pouco para buscar suprimentos em um mercado que parecia intacto, e por isso se separaram. O garoto e a garota foram buscar em uma loja 
+        de conveniência próxima ao mercado, Maycon foi buscar em um posto e seus homens no mercado. Enquanto buscavam, Maycon relata ter escutado sons de mastigação e se sentiu observado como antes denovo, nesse momento ele saiu da loja e foi rapidamente checar os jovens. Maycon chegou lá conforme 
+        os dois eram cercados por infectado e para se livrar, o menino empurrava a menina para eles, fazendo com que ela fosse dilacerada em segundos enquanto ele começava a correr em direção a Maycon pedindo ajuda, Maycon então atirou em todos os infectados e já que eram todos em estágios iniciais, não apresentaram resistência. 
+        Porém, a menina se levantava depois de todos os infectados terem sido mortos, e balbuciava o nome do namorado enquanto andava em direção a ele e Maycon. O menino ficava feliz e ia tentar falar com ele, no que ela mordia fortemente seu pescoço oque fazia o mesmo desabar e cair ao chão gritando pela ajuda de Maycon. Nesse instante, 
+        os homens de Maycon chegavam à conveniência e viam a cena. Maycon ficava parado olhando aquilo enquanto seus homens seguiam seu comportamento, todos esperando que a menina terminasse. No fim, o garoto morria e os homens de Maycon permitiam que a namorada se levantasse e caminhasse, assim, ela mordia propositalmente seu próprio pulso e colapsava ao chão 
+        encarando Maycon e seus homens, conforme sua vida se esvaia, ao menos estava distante daquele garoto nos seus momentos finais. Maycon por fim atirava no menino, e ia embora sem falar nada. Os homens e Maycon voltaram para a busca de suprimentos e quando voltaram para pegar os cadáveres, ambos estavam sem fígado. <br>
+        Todos voltaram para a organização em silêncio esse dia.
+        </div><br>
+
+        <div class="log">
+        <b>[MC-329 | 08/02/2023]</b><br>
+        <span class="titt">Atividade de Checagem</span><br>
+        A quantidade de infectados de variante inicial tem tido uma diminuição significativa, foi algo percebido por todos os membros das equipes de campo. Foi realizada uma visita a uma área comercial a qual foi feita uma denúncia sobre grupos agressivos. Ao chegarem no local, a equipe encontrou um prédio completamente iluminado, algo extremamente incomum 
+        nos dias de hoje. As lâmpadas que o mantinham claro todas eram idênticas às da Moon Company, sendo que nunca foram feitas entregas naquele local. Depois de entrarem, a equipe foi recebida por um grupo armado, mas não com hostilidade e sim simpatia, eles diziam quererem ajudar. O grupo guiou a equipe até os andares superiores, passando por diversos andares 
+        cheios de sobreviventes. Foram reconhecidos pelo menos 20 dos 63 sobreviventes que estavam nas cabanas anteriormente.
+        <br>
+        Ao chegarem no andar principal, a equipe conversou com o líder do grupo, um homem que preferia não se identificar, mas possuía barba e cabelos negros. Ele disse aos agentes que sabia oque a companhia fazia com os infectados, e repudiava isso mas não colocava a culpa nos funcionários e sim apenas no seu líder. Os agentes receberam ordens de se retirar do local, 
+        mas não obedeceram de imediato. O homem os mostrou uma lâmina que ele disse ser capaz de ferir qualquer criatura, uma lâmina que ele disse ter recebido ajuda de uma mulher especial para produzir, e que não conseguia fazer mais por falta de ajuda especializada. Sob a presença da lâmina, as câmeras corporais dos agentes falhavam, então não é possível dizer com certeza 
+        a natureza da mesma. Os soldados se retiraram do local, mas antes disso foram avisados pelo homem que eram todos descartáveis e não deveriam seguir Nashell. Os agentes até então não reconheciam esse nome.
+        </div><br>
+
+        <div class="log">
+        <b>[MC-332 | 14/02/2023]</b><br>
+        <span class="titt">Atividade de Checagem</span><br>
+        Ao saber da situação ocorrida no MC-329, o CEO da corporação ordenou que a equipe tática de Maycon fosse até o local e eliminassem possíveis rebeldes. Maycon negou à primeira vista, mas depois de algum tempo conversando, foi convencido. Ao chegarem, o prédio ainda permanecia completamente iluminado, mas ao entrarem, não havia mais ninguém. Maycon e seus homens subiram 
+        as escadas até o último andar, mas não encontraram nada no andar, havia apenas uma vasta área vazia. Ao chegarem no terraço, encontraram uma carta escrita para Nashell que eles não tiveram permissão de abrir, o destinatário se identificava como "Florense". Maycon reconhecia esse nome mas não disse nada aos agentes, mas pareceu inquieto e querendo se retirar logo daquele local. 
+        No momento q deram o primeiro passo em direção a sair do prédio, todas as luzes subitamente desligaram, deixando Maycon e todos os agentes no escuro. Os homens desceram cuidadosamente cada andar, e estranhamente não havia nenhum infectado. Quando finalmente alcançaram o primeiro andar, encontraram oque acreditamos ser a mesma lâmina anunciada anteriormente, os soldados a coletaram e 
+        trouxeram devolta para a instituição. A lâmina foi derretida e está sob análises.
+        <br>
+        O paradeiro do grupo insurgente é desconhecido.
+        </div><br>
+
+        <div class="log">
+        <b>[MC-344 | 29/02/2023]</b><br>
+        <span class="titt">Atividade de Coleta</span><br>
+        Após serem notificados por uma das equipes de checagem, o grupo de coleta foi até uma localidade, sob escolta armada, a qual anteriormente foi reportada por ter restos orgânicos de infectados. Ao chegarem no local em questão, a  equipe de coleta começou o processo de extração, mas perceberam que os corpos estavam sem fígado. No momento em que a equipe de coleta iria reportar isso aos 
+        membros da escolta, eles relatam não estarem vendo mais os homens armados, ao passo que dizem começar a escutar barulhos do que diziam ser algo sendo partido. Haviam inicialmente 4 agentes no grupo de coleta, dos quais 2 entraram em pânico e tentaram correr, os outros 2 dizem terem visto um vulto branco de cerca de 3 a 4 metros se movendo em uma velocidade difícil de acompanhar mesmo que só com os olhos. 
+        O vulto teria rasgado a barriga e partido as pernas dos agentes que tentaram correr, se escondendo logo em seguida. Um dos soldados armados aparecia se arrastando sem sua arma, ele aparentava ter tido sua barriga aberta também e precisava de ajuda médica imediata. O membros restante do grupo de coleta o seguraram e o levaram novamente para o carro da corporação, eles relatam ter escutado sons de rosnado todo o momento. 
+        Ao chegarem na corporação, foi concluído que cerca de 55% do fígado do soldado da escolta foi retirado de uma vez sob o formato do que parecia uma mordida que perfurou a barriga mirando diretamente na área do fígado. O soldado foi internado e está estável, mas apresenta contrações involuntárias inesperadas. Serão realizados testes de infecção nele posteriormente.
+        </div><br>
+
+        <div class="log">
+        <b>[MC-346 | 17/03/2023]</b><br>
+        <span class="titt">Atividade de Entrega</span><br>
+        Maycon acompanhou pessoalmente uma equipe de entrega a irem em uma região deserta, que estava receosa de irem sem ajuda especializada de alguém da força tática. No local, encontraram uma das 2 crianças que já apareceram em relatórios passados, Maycon a reconheceu instantaneamente, e a criança também se lembrava dele. Eles conversaram e a criança contou ao grupo que havia ligado por que estava com fome e não conseguia encontrar nada, ela disse que 
+        havia sido cuidada por uma mulher, mas que ela morreu tentando proteger a outra criança e desde então ela estava só. 
+        O grupo não entendeu o motivo da organização ter deixado elas sozinhas na cidade, mas foram instruídos pela diretoria a apenas assistir a criança a alimentando e mantendo distância. Maycon ouviu claramente as instruções, mas as ignorou e levou a criança para uma área próxima à instituição, onde haviam luzes suficientes para espantar qualquer mal. A criança recebeu alimento e foi devidamente cuidada por médicos, que concluíram que 
+        por algum milagre, ela não apresentava a infecção nem problemas graves de saúde. Maycon foi repreendido pela diretoria, outros agentes prestaram homenagens a ele.
+        </div><br>
+
+        <div class="log">
+        <b>[MC-351 | 29/03/2023]</b><br>
+        <span class="titt">Atividade de Checagem</span><br>
+        Recebemos denúncias sobre um grande grupo quebrando lâmpadas da organização ao redor da cidade. Foram mandadas equipes táticas para proteger os locais que tem lâmpadas e são importantes, mas de alguma forma, esse grupo consegue fazer com que elas deixem de funcionar por um periodo de tempo curto, possibilitando que infectados se aproximem das equipes e atrapalhem na segurança dos locais. 
+        Suspeita-se de ser o grupo visto no relatório MC-329. Também foi percebido pela organização que esse grupo está possivelmente recrutando pessoas ao longo da extensão da cidade, fazendo com que o grupo cresca cada vez mais. O líder da corporação ordenou que acabassemos com o grupo, nem que seja necessária ofensivas contra os mesmos.
+        </div><br>
+
+        <div class="log">
+        <b>[MC-356 | 03/04/2023]</b><br>
+        <span class="titt">Atividade de Checagem</span><br>
+        Maycon e sua equipe foram pessoalmente até um armazém o qual estava sob suspeitas de ser o próximo alvo dos criminosos, a suspeita veio a partir de uma denúncia anônima. Os homens de Maycon encontraram cerca de 3 pessoas desconhecidas no local, que quando questionados tentaram fugir para um prédio abandonado que havia na região. Os agentes e Maycon se separaram para cobrir uma área maior mais rapidamente, oque fez com que 
+        Maycon se encontrasse diretamente com o líder da organização criminosa, que conversou com Maycon. O agente foi repreendido posteriormente por não ter utilizado de força letal quando teve a oportunidade, quebrando todo o protocolo de como lidar com terroristas. O resto dos agentes não encontrou nenhum dos criminosos, apenas infectados de variante inicial. Vale ressaltar que após a conversa de Maycon com o líder da facção, os agentes o encontraram 
+        parado em pé na sala que ele havia conversado, mas o líder não estava mais lá. Maycon não detalhou o conteúdo da conversa, considerou irrelevante demais para relatar.
+        </div><br>
+
+        <div class="log">
+        <b>[MC-358 | 11/04/2023]</b><br>
+        <span class="titt">Atividade de Contenção</span><br>
+        Foi feita a proteção de uma área atacada pelos terroristas, e apesar deles terem conseguido tomar parte dos mantimentos, um deles foi capturado e mandado como prisioneiro para a diretoria decidir oque lhe ocorrerá. Os agentes responsáveis pela captura já haviam sido rendidos pelo grupo em atentados anteriores, mas foram liberados, Nashell utilizou desse fato para forçar a ideia de que se for apresentada piedade, eles voltarão assim 
+        como esses agentes e irão causar problemas.
+        </div><br>
+
+        <div class="log">
+        <b>[MC-362 | 21/04/2023]</b><br>
+        <span class="titt">Atividade de Contenção</span><br>
+        Um grupo de terroristas foi neutralizado em uma área de mata após um confronto hoje, o grupo de agentes teve êxito em não ter nenhuma baixa nem feridos e conseguiram eliminar 2 criminosos. Maycon reportou à diretoria que os infectados praticamente pararam de aparecer e agora tudo que há que se opõem à organização é tal grupo, se colocando a disposição novamente de ser convocado para extinguir toda e qualquer insurgência. 
+        A diretoria o parabenizou, mas nenhum agente o entende.
+        </div><br>
+
+        <div class="log">
+        <b>[MC-364 | 02/05/2023]</b><br>
+        <span class="titt">Atividade de Checagem</span><br>
+        Um prédio muito iluminado foi encontrado por uma equipe tática durante a checagem de relatos de sons de mastigação vindo daquele local. Atrás do prédio, foi encontrada uma cena a qual a diretoria não permite que escrevamos aqui. Mas nada foi coletado 
+        e os agentes foram ordenados imediatamentes a sair do local. Maycon pareceu aflito com a situação, alguns agentes dizem que ele tentou conversar com Nashell sobre algo, mas foi ignorado.
+        </div><br>
+
+        <div class="log">
+        <b>[MC-368 | 08/05/2023]</b><br>
+        <span class="titt">Atividade de Entrega</span><br>
+        Um grupo de entrega foi escoltado pela equipe de Maycon até uma zona comercial, onde encontraram os sobreviventes que demandaram os suprimentos. Eles estavam em uma situação sanitária deplorável, quase decadente. Haviam 3, dos quais 2 eram homens e 1 mulher, eles diziam não comer há dias e tinham muito medo 
+        de sair para o exterior, então demoraram de conseguir chamar ajuda. Maycon sugeriu a seus superiores que os levassem até as dependências da companhia para serem tratados, mas invés disso lhe foi ordenado que injetasse uma substância que havia em uma seringa na mulher para que ela fosse medicada. Maycon seguiu as 
+        ordens e o fez, mas quando terminou, a mulher começou a se debater e gritar em agonia. O surto da mulher teve seu fim quando sua pele começou a derreter e seus olhos explodiram de seu rosto, fazendo com que a mesma desmaiasse pela dor e morresse lentamente afogada no próprio sangue. Os outros 2 homens tentaram correr 
+        mas a diretoria ordenou que os agentes não permitissem, então ambos foram neutralizados. Maycon não questionou a decisão, e se manteve em silêncio desde então.
+        </div><br>
+
+        <div class="log">
+        <a href="Florense.html">
+        <button id="btnSecreto" style="display:none;">
+        Clique aqui
+        </button>
+        </a>
+        </div><br>
+
+        </div>
+        `;
+    }
+
+    if(tipo === "ocorrencias"){
+        tela.innerHTML = `
+        <div class="titulo">OCORRÊNCIAS</div>
+
+        <div class="log">
+        Sons recorrentes em zonas sem sobreviventes.<br>
+        Padrão: mastigação / arrasto.
+        </div><br>
+
+        <div class="log">
+        Relatos de figura pequena durante a noite.<br>
+        Não hostil.<br>
+        <span class="alerta">Evitar aproximação.</span>
+        </div><br>
+
+        <div class="log">
+        Luz artificial afasta infectados iniciais.<br>
+        <span class="alerta">Exceções confirmadas.</span>
+        </div>
+        `;
+    }
+
+    if(tipo === "infectados"){
+        tela.innerHTML = `
+        <div class="titulo">CLASSIFICAÇÃO DE AMEAÇAS</div>
+
+        <div class="log">
+        <b>Nível 1:</b> Instáveis, reagem à luz.<br>
+        <b>Nível 2:</b> Agressivos, comportamento errático.<br>
+        <b>Nível 3:</b> Caçadores, evitam iluminação.
+        </div><br>
+
+        <div class="log">
+        <span class="alerta">APOLION</span><br>
+        Infectado consciente.<br>
+        Comunicação possível.<br>
+        <span class="alerta">NÃO HOSTIL (ATÉ O MOMENTO)</span>
+        </div>
+        `;
+    }
+
+}
+
+
+let seq = [];
+let F1=false;
+let D1=false;
+document.addEventListener("keydown", (e)=>{
+    seq.push(e.key);
+
+    if(!D1 && seq.join("").toLowerCase().includes("dex")){
+    D1 = true;
+
+    alert("Se você tá vendo isso... Já deve ter acontecido.");
+
+    document.body.style.background = "#000";
+
+    let wrapper = document.getElementById("videoWrapper");
+    let iframe = document.getElementById("videoSecreto");
+
+    wrapper.style.display = "block";
+
+    setTimeout(() => {
+        iframe.src = "https://drive.google.com/file/d/1vZgnLPmnfUdq3pfppYj-1L7rJDp6l1fS/preview";
+    }, 200);
+}
+    if(!F1 && seq.join("").toLowerCase().includes("florense")){
+        F1= true;
+        carregar('logs');
+
+        setTimeout(()=>{
+        let botao = document.getElementById("btnSecreto");
+
+        if(botao){
+            botao.style.display = "block";
+        }
+
+        alert("Então você encontrou esse nome...");
+    }, 100);
+}
+});
+
+</script>
+
+</body>
+</html>

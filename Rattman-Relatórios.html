@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>MoonCompany - Database</title>
+
+<style>
+body{
+    margin:0;
+    font-family:'Courier New', monospace;
+    background:#0d0b14;
+    color:#d6cfff;
+}
+.sidebar{
+    position:fixed;
+    width:230px;
+    height:100%;
+    background:#140f24;
+    padding:20px;
+    border-right:2px solid #2b1f4d;
+}
+.video-wrapper {
+  position: relative;
+  width: 80%;
+  padding-top: 45%; /* 16:9 */
+  background: #000;
+  border: 1px solid #2a1808;
+  overflow: hidden;
+  margin:0 auto;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.sidebar h2{
+    color:#a78bfa;
+    margin-bottom:20px;
+}
+
+.sidebar button{
+    width:100%;
+    margin-bottom:10px;
+    padding:10px;
+    background:#1e1633;
+    border:none;
+    color:#d6cfff;
+    cursor:pointer;
+    text-align:left;
+}
+
+.sidebar button:hover{
+    background:#2b1f4d;
+}
+
+
+.content{
+    margin-left:250px;
+    padding:30px;
+}
+
+.box{
+    background:#140f24;
+    padding:20px;
+    border:1px solid #2b1f4d;
+    box-shadow:0 0 10px rgba(167,139,250,0.2);
+}
+
+.titulo{
+    color:#a78bfa;
+    border-bottom:1px solid #2b1f4d;
+    padding-bottom:10px;
+    margin-bottom:15px;
+}
+.Title{
+    color:#cc94e6;
+    border-bottom:1px solid #2b1f4d;
+    margin-bottom:15px;
+    margin-top: 15px;
+    padding-left: 0.2%;
+}
+
+.Title2{
+    color:#cc94e6;
+    border-bottom:1px solid #2b1f4d;
+    margin-bottom:15px;
+    margin-top: 15px;
+    padding-left: 0.2%;
+    cursor: pointer;
+    user-select: none;
+}
+
+.log{
+    margin-top:15px;
+    line-height:1.6;
+}
+
+.classificado{
+    color:#ff4d6d;
+}
+.piscar {
+     animation: piscarAnim 1s infinite;
+     color:#ff4d6d;
+}
+@keyframes piscarAnim {
+    25%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0.8; }
+}
+.hidden{
+    color:transparent;
+    user-select:text;
+}
+.rodape {
+    width: 100%;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    padding: 40px 0; 
+    border-top: 1px solid #1a1a1a; 
+    margin-top: 30px;
+    opacity: 0.6; 
+}
+.rodape video{
+    max-width: 1000px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+    <h2>MoonCompany</h2>
+
+    <button onclick="carregar('geral')">Relatórios Gerais</button>
+    <button onclick="carregar('charlotte')">Charlotte Rattman</button>
+    <button onclick="carregar('maycon')">Maycon (Segurança)</button>
+    <button onclick="carregar('elias')">Elias (Pesquisa)</button>
+    <button onclick="carregar('sarah')">Sarah (Padrões)</button>
+    <button onclick="carregar('diretoria')">Diretoria</button>
+</div>
+
+<div class="content">
+    <div class="box" id="tela">
+        <div class="titulo">DATABASE INICIAL</div>
+        <p>Selecione um setor para visualizar os relatórios.</p>
+    </div>
+</div>
+
+<script>
+
+function carregar(tipo){
+
+    let tela = document.getElementById("tela");
+
+    if(tipo === "geral"){
+        tela.innerHTML = `
+        <div class="titulo">RELATÓRIOS GERAIS</div>
+
+        <div class="Title">
+            Geral-1 [21/03/2021]
+        </div>
+        <div class="log">
+        Iniciada as pesquisas em busca da cura, tivemos retornos mínimos apesar de investimentos milionários, Nashell definitivamente está determinado nisso. Aparentemente já foram testados tratamentos tradicionais e até "místicos" mas nada parece ter dado resultados.<br>
+        Na madrugada de hoje, houveram registros de atividade neural dela, mas nada expressivo. Nashell ficou muito contente quando soube, mesmo sabendo que provavelmente se trata de algum tipo de reflexo involuntário
+        Qnt. de Agentes: 24
+        </div>
+
+        <div class="Title">
+            Geral-2 [28/03/2021]
+        </div>
+        <div class="log">
+        Contratamos cerca de 53 biólogos e pesquisadores em menos de 1 semana, Nashell não sai do escritório dele há 5 dias, todos supõem que ele esteja ocupado com a papelada para tantas contratações.<br>
+        Sua dedicação é admirável.
+        Qnt. de Agentes: 77
+        </div>
+
+        <div class="Title">
+            Geral-3 [07/04/2021]
+        </div>
+        <div class="log">
+        Mais pesquisas foram feitas, algumas sem resultados úteis, outras são extremamente eficientes para o avanço na cura de outras doenças, principalmente àquelas autoimunes. Contudo, nada parece surgir efeito contra seja lá oque acometa a criança.<br>
+        A companhia também foi recentemente eleita a muitas premiações por contribuições relevantes para a medicina nos esforços contra doenças neurodegenerativas.
+        Qnt. de Agentes: 113
+        </div>
+        
+        <div class="Title">
+            Geral-3 [22/04/2021]
+        </div>
+        <div class="log">
+        O irmão de Nashell tem sido mais presente nas pesquisas recentemente, dizem que ele foi o primeiro contrato da empresa, o que faz sentido. Ele parece justamente o oposto de Nashell, é simpático e amigável com todos, deve ser um bom irmão.<br>
+        Ele diz não ter sido tão presente até agora pois estava ajudando Nashell em outras coisas que preferiu não dizer.
+        Qnt de Agentes: 118
+
+        <div class="Title">
+            Geral-4 [16/05/2021]
+        </div>
+        <div class="log">
+        Nenhum progresso notável, Nashell está sempre presente nos laboratórios mesmo sem saber utilizar com exatidez os aparelhos, ele parece desesperado para aprender algo e ajudar, ele parece não estar dormindo.<br>
+        Seu irmão constantemente tenta conversar com Nashell, mas apesar de ajudar momentaneamente, parece que Nashell começou a desenvolver alguma obsessão.
+        Qnt. de Agentes: 118
+        </div>
+
+        <div class="Title">
+            Geral-5 [26/05/2021]
+        </div>
+        <div class="log">
+        No dia 23 houve um roubo de algumas amostras por parte de algum pesquisador, não se sabe a motivação. Isso motivou Nashell a contratar guardas privados para vigiar os laboratórios a todo momento. <br>
+        Além disso, iniciou-se demolições ao redor do Centro de Pesquisas principal da empresa, parece que casas serão construídas ao redor. Nashell teme que os barulhos tirem o foco dos agentes.
+        Qnt. de Agentes: 122
+        </div>
+
+        <div class="Title">
+            Geral-6 [02/06/2021]
+        </div>
+        <div class="log">
+        Como Nashell temia, as construções geraram sons impossíveis de ignorar, como resposta a isso, ele se isolou na sala dela e se mantêm lá há 4 dias, ninguém entrou desde então para checar os sinais dela, a não ser seu irmaõ que o leva comida. <br>
+        Qnt. de Agentes: 120
+        </div>
+
+        <div class="Title">
+            Geral-7 [20/06/2021]
+        </div>
+        <div class="log">
+        As construções pararam repentinamente, oque gerou desconfiança nos pesquisadores já que elas deveriam demorar anos. Apenas cerca de 11 residências foram terminadas, e apenas as das famílias que tinham reservado. Nashell está devolta perambulando pelos laboratórios.<br>
+        Apesar de suspeito, ninguém achou errado oque possa ter sido feito para parar os barulhos por ter um motivo nobre.
+        Qnt. de Agentes: 121
+        </div>
+        
+        <div class="Title">
+            Geral-8 [01/07/2021]
+        </div>
+        <div class="log">
+        Uma vertente das pesquisas em doenças crônicas parece ter tido resultados mínimos em relação à qualidade de vida dela, através de uma droga sintética de difícil sintetização, agora ela parece estável em respirar sem auxílio de aparelhos. Mas, acreditamos ser apenas paliativo. <br> 
+        Com finalmente algum progresso visível, Nashell decidiu aumentar a segurança da instalação, ele ainda parece paranóico sobre roubos, ao nível que contratou forças alternativas questionáveis para evitar os mesmos, sendo o lider delas o Sr. Maycon Murray. Ele diz ter feito isso pois não poderia continuar dependendo de pessoas inexperientes para um papel tão importante.   
+        Qnt. de Agentes: 134
+        </div>
+        
+        <div class="Title">
+            Geral-9 [19/07/2021]
+        </div>
+        <div class="log">
+        As famílias que residem nas casas próximas à instalação começaram a se comunicar mais com os agentes, eles são amigáveis e de vez em quando oferecem estádia para alguns por esses morarem muito longe. À primeira vista, isso pareceu estranho para alguns, mas é natural pela reputação extremamente positiva da coorporação pela contribuição na medicina. <br>
+        Parece que a coorporação tem uma espécie de envolto benevolente em volta dela, mas ninguém que acha isso sabe sobre ela.
+        Qnt de Agentes: 140
+        </div>
+        
+        <div class="Title">
+            Geral-10 [29/07/2021]
+        </div>
+        <div class="log">
+        Recentemente, parece que Nashell instruiu Maycon a não permitir que membros da coorporação passem tanto tempo com os residentes nas proximidades. Um dos pesquisadores tentou burlar esse novo regime e foi expulso da instituição imediatamente por Maycon e sua equipe. De acordo com Nashell, ele só quer que todos foquem no trabalho
+        Qnt. de Agentes: 132
+        </div>
+
+        <div class="Title">
+            Geral-11 [06/08/2021]
+        </div>
+        <div class="log">
+        Um novo núcleo de pesquisa foi formado por alguns pesquisadores, eles dizem que talvez "métodos tradicionais" não funcionem para o caso da garota, dizem que problemas extraordinários requerem soluções também extraordinárias, apesar de nem todos entenderem, todos concordam se for trazer uma nova perspectiva, principalmente Nashell.
+        Qnt. de Agentes: 133
+        </div>
+
+        <div class="Title">
+            Geral-12 [17/08/2021]
+        </div>
+        <div class="log">
+        O irmão de Nashell que havia se ausentado da instituição por conta de questões externas voltou e parece indignado com Nashell pela força de coerção contratada, ele diz que aquilo não é necessário para uma coorporação médica e que ele devia confiar nos meios legais para lidar com as pessoas. <br>
+        Outro evento repentino foi a construção de uma casa a mais junto das outras ao redor da instituição, parece ser apenas uma família que se mudou recentemente, e afirmam serem gratos a Nashell por ajudar eles a se instalar ali. Ninguém entende o motivo dele ter feito isso ainda, supõem-se que sejam conhecidos.
+        Qnt. de Agentes: 131
+        </div>
+
+        <div class="Title">
+            Geral-13 [29/08/2021]
+        </div>
+        <div class="log">
+        As pesquisas "extraordinárias" parecem estar gerando resultados extremamente positivos, foi descoberto resquícios de um mineral até então desconhecido, e dizem que talvez ele possa ajudar em algo, apesar de todos duvidarem, mas ainda aplaudirem pela descoberta de um elemento novo que não foi previsto pela tabela periódica padrão. <br>
+        Nashell não pareceu se importar com a descoberta, mas se mostrou interessado na possibilidade dela auxiliar na cura, seu irmão parece cada vez mais distante pelas suas recentes atitudes.
+        Qnt. de Agentes: 132
+        </div>
+
+        <div class="Title">
+            Geral-14 [03/09/2021]
+        </div>
+        <div class="log">
+        O irmão de Nashell parece ter sido novamente convencido por ele a voltar às instalações para auxiliar os pesquisadores, ele é um homem brilhante e definitivamente devia ter razões sólidas para se afastar, não se sabe sobre a conversa que Nashell teve com ele. <br>
+        Além disso, o irmão de Nashell também tem se aproximado mais da nova família da região, muitos agentes vêem eles conversando no horário de fim do expediente. A família se trata de um homem, uma mulher e uma menina que parece ter a mesma idade daquela garota, talvez elas pudessem ser amiguinhas em outras circunstâncias.
+        Qnt. de Agentes: 135
+        </div>
+
+        <div class="Title">
+            Geral-15 [12/09/2021]
+        </div>
+        <div class="log">
+        Finalmente! Alguma coisa finalmente tirou um sorriso genuino do rosto de Nashell, de seu irmão e de todos: encontraram algo que consegue estabilizar de forma consistente o quadro da garota. Não entendem completamente ainda, mas parece que aquele mineral quando dissolvido na corrente da garota, consegue inibir fortemente o vírus causador da doença. <br>
+        Nashell nomeou o minério de Selenita-G.
+        Qnt. de Agentes: 135
+        </div>
+
+        <div class="Title">
+            Geral-16 [27/09/2021]
+        </div>
+        <div class="log">
+        Nashell começou uma onda de contratações em massa sob a recomendação de seu irmão, parece que eles já trabalharam com muitas pessoas conhecidas no cenário acadêmico mundial, não é surpresa tendo em vista todo o dinheiro que eles têm. <br>
+        Nashell agora parece mais aliviado do que nunca, as olheiras diminuiram e ele sorri com qualquer coisa, sua felicidade é contagiante.
+        Qnt. de Agentes: 182
+        </div>
+
+        <div class="Title">
+            Geral-17 [06/10/2021]
+        </div>
+        <div class="log">
+        Foram construídos cerca de 4 laboratórios novos na instituição, todos focados em pesquisar a forma mais eficiente de dissolver e extrair o minério. Rapidamente foi descoberto pelo geólogo Elias Thorne que o material não existe em abundância na Terra e nem é possível recriar as condições que ele foi formado inicialmente. 
+        Qnt. de Agentes: 193
+        </div>
+
+        <div class="Title">
+            Geral-18 [19/11/2021]
+        </div>
+        <div class="log">
+        De acordo com o grupo de pesquisa do Dr. Elias, temos ainda cerca de 3 meses de extrações do mineral na Terra, após isso o mineral estará completamente extinto do planeta. O lado bom é que também de acordo com eles, o minério pode existir em abundância na órbita lunar.<br>
+        Nashell disse que começará os preparativos para fazer viagens até lá para montar uma base de extração. Parece que de repente, tudo isso tomou um rumo tão inesperado, mas de certa forma é bonito ver a determinação dele.
+        </div>
+
+        <div class="Title">
+            Geral-19 [21/12/2021]
+        </div>
+        <div class="log">
+        Desde o começo, a Dra. Rattman parecia não entender ao certo sobre o mineral, o que é estranho tendo em vista que ela é a cientista que Nashell mais confia em intelecto biológico, não é algo inesperado já que estamos lidando com um novo tipo de "remédio" nunca antes documentado.<br>
+        A Srta. Sarah chegou recentemente, ela é bem quieta, ainda não ficou claro seu papel na instituição, mas ela tem uma sala própria.
+        </div>
+
+        <div class="Title">
+            Geral-20 [23/01/2022]
+        </div>
+        <div class="log">
+        A base de extração de Nashell está quase completamente pronta, ele parece ansioso para saber da continuidade do processo. A garota apresenta significativa melhora, ele teve até mesmos momentos de consciência documentados por aparelhos, apesar de não conseguir se comunicar nem se mover.<br>
+        O irmão de Nashell também parece muito contente com a situação toda, ele diz que é uma pena que tenham que extinguir um mineral do planeta, mas que a vida de uma pessoa tão querida é mais preciosa que qualquer minério raro. Junto com ele, aquela família que chegou depois também parece estar tendo interações mais próximas à instituição.
+        Em específico a criança, ela anda pelas instalações da coorporação quase que livremente, o único que reprova isso é Maycon e Nashell, mas o segundo é convencido por seu irmão a permitir que ela se divirta.
+        </div>
+
+        <div class="Title">
+            Geral-21 [16/02/2022]
+        </div>
+        <div class="log">
+        As operações lunares começaram, e as coisas ficaram tensas por um tempo, pelo menos até que a primeira extração foi um sucesso. A equipe do Dr. Elias conseguiu localizar uma cratera onde a concentração do minério é altíssima, quase 50 vezes mais do que havia na terra. Denominaram-a de "Cratera-7"
+        </div>
+
+        <div class="Title">
+            AVISO DE SEGURANÇA INTERNA - PROTOCOLO 001
+        </div>
+        <div class="log">
+            Este diretório foi desativado por ordem do Departamento de Contenção. Toda e qualquer atividade suspeita relacionada aos registros da Unidade Canto A foi reportada. 
+            O acesso a logs particulares é estritamente proibido sob pena de rescisão imediata e<span class = "classificado">[REDACTED]</span>
+        </div>
+
+
+
+        <div class="rodape">
+            <div class="video-wrapper">
+            <iframe 
+            src="https://drive.google.com/file/d/1RnxTV6bk_WKUXCxyphKyMjad5P1-PKUw/preview" 
+            allow="autoplay">
+            </iframe>
+            </div>
+        </div>
+        `;
+    }
+
+    if(tipo === "charlotte"){
+        tela.innerHTML = `
+        <div class="titulo">CHARLOTTE RATTMAN</div>
+
+        <div class="Title2">
+        A Dra. Rattman não deve ser contada, não insistam em buscar contato.
+        
+        `;
+    }
+
+    if(tipo === "maycon"){
+        tela.innerHTML = `
+        <div class="titulo">MAYCON - SEGURANÇA</div>
+
+        <div class="Title">
+            LOG-Turno.Noite [25/05/2021]
+        </div>
+        <div class="log">
+        Apesar do que o Sr. Nashell disse sobre o furto, qualquer tipo de infração nesse lugar parece caso isolado, não deve haver muito com o que se preocupar.<br>
+        No papel, eu não faço parte da coorporação ainda, Nashell falou algo sobre preservar a imagem da empresa, não gosto quando nos tratam como milicianos bárbaros.
+        </div>
+
+        <div class="Title">
+            LOG-Turno.Dia [18/06/2021]
+        </div>
+        <div class="log">
+        Hoje Nashell pediu para que eu liderasse o pessoal para entregar uma papelada para um engenheiro que ele disse que era amigo dele, o cara estava trabalhando nas obras ao lado da empresa. Poucas vezes na vida eu vi alguém fazer uma cara tão surpresa quanto ele quando viu o que havia no papel, não tive permissão de olhar.<br>
+        Todos se retiraram imediatamente do local sob a ordem do engenheiro.
+        </div>
+
+        <div class="Title">
+            LOG-Turno.Dia [27/07/2021]
+        </div>
+        <div class="log">
+        Nashell disse para que tomemos conta de não deixar com que funcionários tenham qualquer contato muito próximo com os civís que moram ao redor da instalação. Um dos pesquisadores escolheu desrespeitar isso mesmo depois de avisarmos, tivemos que o repreender e ele acabou sido mandado embora... <br>
+        Há algo sobre essas pessoas que moram aqui, uma inquietação anormal.
+        </div>
+
+        <div class="Title">
+            LOG-Turno.Noite [16/08/2021]
+        </div>
+        <div class="log">
+        O irmão do Nashell decidiu que não gosta de mim e do pessoal, eu não posso fazer ele gostar, mas de qualquer forma somos nós que protegemos o local agora, espero que ele não crie confusão desnecessária...
+        </div>
+
+        <div class="Title">
+            LOG-Turno.Dia [24/09/2021]
+        </div>
+        <div class="log">
+        O ambiente mudou. O Sr. Nashell agora anda com um brilho no olhar que eu só vi em viciados. Ele me deu uma lista de novos 'ativos' que estão chegando: geólogos, engenheiros aeroespaciais e uma em especial chamada Dra. Rattman. <br>
+        Minha ordem é clara: ninguém entra ou sai sem revista completa. O irmão dele tentou passar por mim sem mostrar a maleta. Tive que barrar. Ele me olhou como se eu fosse um monstro. Eu só estou fazendo meu trabalho.
+        </div>
+
+        <div class="Title">
+            LOG-Turno.Noite [20/01/2022]
+        </div>
+        <div class="log">
+        Assim como aquele tão de Floran sei lá das quantas não gosta de mim, eu também não gosto dele. Ele fica trazendo essa menina pra dentro do prédio da coorporação dizendo que ela quer brincar e que é pra eu deixar, mas ele não avisa que é pra ela sair de noite. Estava na patrulha de rotina quando ouvi um barulho vindo do corredor à frente, e naquele horário não deveria ter ninguém além de mim naquele lugar, eu quase atiro naquela criança por pura imprudência dos pais dela. <br>
+        Eu falei pra ela não ficar lá até tão tarde, e quando eu perguntei se os pais dela se importavam com ela, ela disse que sim e foi embora pulando... Eu invejo a inocência dos pequenos.
+        </div>
+        `;
+    }
+
+    if(tipo === "elias"){
+        tela.innerHTML = `
+        <div class="titulo">ELIAS - PESQUISA</div>
+
+        <div class="Title">
+            Log(1) [04/10/2021]
+        </div>
+        <div class="log">
+        Essa coorporação é estranha, tantos cientistas geniais, tantas mentes excepcionais e mesmo assim continuam procurando mais e mais pessoal como se nada fosse suficiente. É incrível fazer parte do grupo de pesquisa que descobriu um novo elemento químico, mas me pergunto se esse clima de felicidade vai continuar depois que eu contar sobre a ausência do minério em abundância na Terra.<br>
+        O Selenita-G na verdade não é um material naturalmente terrestre, ele muito provavelmente só veio para cá durante os processos de formação do planeta, vindo de outros lugares do universo. Preciso realizar mais pesquisas para tentar rastrear de onde ele pode ter vindo, mas tenho certeza que com tantas pessoas inteligentes ao meu lado isso não será difícil.
+        </div>
+        <div class="Title">
+            Log(2) [09/10/2021]
+        </div>
+        <div class="log">
+        O laboratório de geologia foi construído mais rápido do que eu esperava, eu percebo cada vez mais que o dinheiro realmente move montanhas. Podemos agora começar verdadeiramente as pesquisas sobre o mineral.
+        </div>
+
+        <div class="Title">
+            Log(3) [16/11/2021]
+        </div>
+        <div class="log">
+        Todos estão trabalhando muito bem, conseguimos estimar quanto falta mais ou menos para a extinção do material na Terra, e infelizmente não falta muito tempo. Mas a notícia boa é que conseguimos descobrir de onde ele se originou para vir à terra: da lua.
+        </div>
+
+        <div class="Title">
+            Log(4) [15/02/2022]
+        </div>
+        <div class="log">
+        Acredito que esse seja o trabalho da minha vida. Nunca passei tantas noites em claro fazendo pesquisas, procurando lugares para realizar a extração de maneira eficiente, buscando o melhor lugar. Se aquela menina estivesse acordada com certeza se acharia a pessoa mais importante do mundo por ter tantas pessoas trabalhando por ela.<br>
+        Depois de muito tempo e muitos erros, conseguimos finalmente encontrar a "Cratera-7", e acredito piamente que lá seja a cura dela, mesmo sem saber até agora como um minério pode salvar uma vida sendo dissolvido, mas isso é trabalho da Charllote
+        </div>
+        `;
+    }
+
+    if(tipo === "sarah"){
+        tela.innerHTML = `
+        <div class="titulo">SARAH - PADRÕES</div>
+
+        <div class="piscar">
+        A Srta. Sarah não se encontra em condições médicas efetivas para o trabalho no momento, esperamos que a mesma melhore e volte o quanto antes.
+        </div>
+        `;
+    }
+
+    if(tipo === "diretoria"){
+        tela.innerHTML = `
+        <div class="titulo">DIRETORIA</div>
+
+        <div class="log">
+        Charlotte Rattman apresenta instabilidade psicológica.
+        </div>
+
+        <div class="log">
+        Qualquer informação proveniente da mesma deve ser ignorada.
+        </div>
+        `;
+    }
+}
+
+/* evento secreto */
+let clicks = 0;
+
+document.body.addEventListener("click", ()=>{
+    clicks++;
+
+    if(clicks === 20){
+        let senha = prompt("Acesso restrito:");
+
+        if(senha === "Charllote"){
+            window.location.href = "Logs-Rattman.html";
+        }
+        if(senha=="Alice"){
+            window.location.href="apagar.html"
+        }else{
+            alert("ACESSO NEGADO");
+        }
+    }
+});
+
+</script>
+
+</body>
+</html>

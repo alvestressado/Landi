@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>Moon Map</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+
+body{
+margin:0;
+background:#000000;
+color:#020202;
+font-family:monospace;
+}
+.body2{
+margin:0;
+background:black;
+color:rgb(138, 107, 107);
+font-family:monospace;
+display:flex;
+flex-direction: column;
+justify-content:center;
+align-items:center;
+height:100vh;
+text-align:center;
+}
+@keyframes shake {
+    0% { transform: translate(0.5px, 0.5px) rotate(0deg); }
+    10% { transform: translate(-0.5px, -1px) rotate(-1deg); }
+    20% { transform: translate(-1.5px, 0px) rotate(1deg); }
+    30% { transform: translate(1.5px, 1px) rotate(0deg); }
+    40% { transform: translate(0.5px, -0.5px) rotate(1deg); }
+    50% { transform: translate(-0.5px, 1px) rotate(-1deg); }
+    100% { transform: translate(0.5px, 0.5px) rotate(0deg); }
+}
+.a1{
+    text-align: center;
+    padding-top: 15%;
+    font-size:40px;
+    cursor:default;
+    user-select: none;
+}
+.a2{
+    text-align: center;
+    padding-top: 0%;
+    font-size: 45px;
+    cursor:default;
+    user-select: none;
+    color: rgb(80, 78, 78);
+    font-family: 'Special Elite', system-ui;
+}
+.a3{
+    margin:0;
+    text-align: center;
+    padding-top: 0%;
+    font-size: 45px;
+    cursor:default;
+    user-select: none;
+    color: rgb(112, 97, 97);
+    font-family: 'Courier New', Courier, monospace;
+}
+.a2:hover{
+    animation: shake 0.2s infinite;
+}
+</style>
+<body>
+    <div class="a1">
+        Mjc4Mzk=
+    </div>
+    <div class="a2">
+        Você devia sair, antes que avisemos a ele.
+    </div>
+
+
+<script>
+    let i=0;
+    const som=new Audio('Ruido.wav');
+    som.loop=true;
+    som.volume=1.0;
+    document.addEventListener('click', function(){
+        som.play().catch(error => {
+            console.log("O navegador bloqueou o áudio inicial:", error);
+        });
+    }, { once: true });
+
+    function ban(){
+        localStorage.setItem('acesso negado', 'true')
+        window.location.reload();
+    }
+    window.onload=function(){
+        if (localStorage.getItem('acesso negado')=='true'){
+            i++;
+            document.body.innerHTML=
+            '<div class="body2" > Sua localização foi enviada para receber ajuda, não saia de onde está.</div>'
+            return;
+        }
+    setTimeout(ban,10000);
+    }
+</script>
+</body>
